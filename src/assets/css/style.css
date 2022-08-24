@@ -1,0 +1,64 @@
+/* 
+
+*** FONT SYSTEM ***
+
+--- Font family ---
+- Eagle Lake (Brand)
+- Work Sans (Text)
+
+
+*** COLORS ***
+- #122620 (charcoal)
+
+- #f4ebd0 (cream)
+
+- #b68d40 (tan)
+
+- #d6ad60 (gold)
+-- Tints:
+- #debd80
+
+*/
+
+/* *** GENERAL *** */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background-color: #f4ebd0;
+  color: #122620;
+}
+
+.logo {
+  font-family: 'Eagle Lake', cursive;
+}
+
+/* *** SMALL SCREEN SETTINGS *** */
+/* --- NAVBAR --- */
+.navbar {
+  background-color: #122620 !important;
+}
+
+.navbar-toggler {
+  border-color: #d6ad60 !important;
+  color: #d6ad60 !important;
+}
+
+.navbar-brand.logo,
+.nav-link {
+  color: #d6ad60 !important;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  color: #debd80 !important;
+}
+
+/* *** MEDIUM SCREEN SETTINGS (768PX AND ABOVE) *** */
+@media screen and (min-width: 768px) {}
+
+/* *** LARGE SCREEN SETTINGS (992PX AND ABOVE) *** */
+@media screen and (min-width: 992px) {}
