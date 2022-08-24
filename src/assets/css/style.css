@@ -9,6 +9,11 @@
 
 *** COLORS ***
 - #122620 (charcoal)
+-- Tints:
+- #41514d
+
+-- Shades:
+- #10221d
 
 - #f4ebd0 (cream)
 
@@ -34,6 +39,28 @@ body {
 
 .logo {
   font-family: 'Eagle Lake', cursive;
+  color: #d6ad60 !important;
+}
+
+/* --- BUTTONS --- */
+.btn:focus,
+.btn:active:focus {
+  box-shadow: none;
+}
+
+.btn-cta {
+  color: #d6ad60 !important;
+  background-color: #122620 !important;
+  border-color: #122620 !important;
+}
+
+.btn-cta:hover {
+  background-color: #10221d !important;
+}
+
+/* Account for navbar height */
+.adjust-margin-top {
+  margin-top: 62px;
 }
 
 /* *** SMALL SCREEN SETTINGS *** */
@@ -47,9 +74,16 @@ body {
   color: #d6ad60 !important;
 }
 
-.navbar-brand.logo,
+.navbar-brand.logo {
+  font-size: 1.5rem;
+}
+
 .nav-link {
   color: #d6ad60 !important;
+}
+
+.nav-link {
+  font-size: 1.1rem;
 }
 
 .nav-link:hover,
@@ -57,8 +91,94 @@ body {
   color: #debd80 !important;
 }
 
+/* --- Hero Section --- */
+.section-hero {
+  height: calc(100vh - 62px);
+  background-image: url('./../images/bg-hero.jpg');
+  background-position: center;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.hero-text-box {
+  background-color: rgba(65, 81, 77, 0.95);
+  color: #d6ad60;
+  padding: 1.5rem 3rem;
+  border-radius: 22px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hero-heading {
+  font-family: 'Eagle Lake', cursive;
+  font-size: 2.5rem;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.btn-hero {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
 /* *** MEDIUM SCREEN SETTINGS (768PX AND ABOVE) *** */
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+
+  /* --- NAVBAR --- */
+  .navbar-brand.logo {
+    font-size: 2rem;
+  }
+
+  .navbar-toggle-icon {
+    font-size: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 1.4rem;
+  }
+
+  /* --- Hero Section --- */
+  .section-hero {
+    height: calc(100vh - 62px);
+  }
+
+  .hero-text-box {
+    padding: 2rem 4rem;
+    border-radius: 22px;
+
+    gap: 0.55rem;
+  }
+
+  .hero-heading {
+    font-size: 4rem;
+  }
+
+  .hero-description {
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+  }
+
+  .btn-hero {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 8px 16px;
+  }
+}
 
 /* *** LARGE SCREEN SETTINGS (992PX AND ABOVE) *** */
 @media screen and (min-width: 992px) {}
