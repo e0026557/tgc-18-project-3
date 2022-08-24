@@ -16,9 +16,12 @@ function App() {
 	return (
 		<React.Fragment>
 			<Router>
+				{/* Navbar */}
 				<Navigation />
 
+				{/* Routes */}
 				<Routes>
+					{/* Products Route */}
 					<Route
 						path='/'
 						element={
@@ -28,6 +31,7 @@ function App() {
 						}
 					/>
 
+					{/* Accounts Routes */}
 					<Route path='/login' element={<h1>login</h1>} />
 					<Route path='/register' element={<h1>register</h1>} />
 
