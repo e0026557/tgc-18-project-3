@@ -7,20 +7,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navigation() {
-  return (
-    <Navbar bg='light' expand="lg" collapseOnSelect >
-      <Container className='d-flex align-items-center'>
-        <Navbar.Brand className='logo' as={Link} to="/">InkStone</Navbar.Brand>
-        <Navbar.Toggle children={<FontAwesomeIcon
-          icon={faBars}
-        />} aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/login">Login</Nav.Link>
-            <Nav.Link as={Link} to="/register">Register</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
+	return (
+		<Navbar bg='light' expand='lg' fixed='top' collapseOnSelect>
+			<Container className='d-flex align-items-center'>
+				<Navbar.Brand className='logo' as={Link} to='/'>
+					InkStone
+				</Navbar.Brand>
+				<Navbar.Toggle
+					children={
+						<FontAwesomeIcon
+							className='navbar-toggle-icon'
+							icon={faBars}
+						/>
+					}
+					aria-controls='basic-navbar-nav'
+				/>
+				<Navbar.Collapse id='basic-navbar-nav'>
+					<Nav className='ms-auto'>
+						<Nav.Link as={Link} to='/login'>
+							Login
+						</Nav.Link>
+						<Nav.Link as={Link} to='/register'>
+							Register
+						</Nav.Link>
+					</Nav>
+				</Navbar.Collapse>
+			</Container>
+		</Navbar>
+	);
 }
