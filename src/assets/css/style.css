@@ -138,6 +138,10 @@ body {
 
 /* *** MEDIUM SCREEN SETTINGS (768PX AND ABOVE) *** */
 @media screen and (min-width: 768px) {
+  /* --- GENERAL --- */
+  .adjust-margin-top {
+    margin-top: 74px;
+  }
 
   /* --- NAVBAR --- */
   .navbar-brand.logo {
