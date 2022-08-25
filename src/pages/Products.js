@@ -44,16 +44,17 @@ export default function Products() {
 				id='section-products'
 			>
 				<h1>Products</h1>
-				{contentLoaded ? <h1>products listing</h1> : <Spinner />}
-				{/* <ul>
-				{products.map((product) => {
-					return (
-						<li>
-							{product.brand.brand} {product.model}
-						</li>
-					);
-				})}
-			</ul> */}
+				{contentLoaded ? (
+					products.map((product) => {
+						return (
+							<li>
+								{product.brand.brand} {product.model}
+							</li>
+						);
+					})
+				) : (
+					<Spinner />
+				)}
 			</section>
 		</React.Fragment>
 	);
