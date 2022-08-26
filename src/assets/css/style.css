@@ -235,4 +235,14 @@ body {
 }
 
 /* *** LARGE SCREEN SETTINGS (992PX AND ABOVE) *** */
-@media screen and (min-width: 992px) {}
+@media screen and (min-width: 992px) {
+  /* --- Products Section --- */
+  .section-products {
+    position: relative;
+  }
+ 
+  .search-box {
+    position: sticky;
+    top: 15%;
+  }
+}

@@ -113,7 +113,7 @@ export default function Products() {
 			</section>
 
 			<section
-				className='container section-products pt-5'
+				className='container section-products py-5'
 				id='section-products'
 			>
 				<h1>Products</h1>
@@ -184,7 +184,7 @@ export default function Products() {
 											)}
 										</Form.Select>
 									</Form.Group>
-									{/* Cap Type */}
+									{/* Cap Type
 									<Form.Group className='mb-3'>
 										<Form.Label>Cap Type</Form.Label>
 										<Form.Select
@@ -196,8 +196,8 @@ export default function Products() {
 												searchOptions.capTypes
 											)}
 										</Form.Select>
-									</Form.Group>
-									{/* Property */}
+									</Form.Group> */}
+									{/* Property
 									<Form.Group className='mb-3'>
 										<Form.Label>Property</Form.Label>
 										<Form.Select
@@ -209,7 +209,7 @@ export default function Products() {
 												searchOptions.properties
 											)}
 										</Form.Select>
-									</Form.Group>
+									</Form.Group> */}
 									{/* Nib Size */}
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Nib Size</Form.Label>
@@ -264,7 +264,7 @@ export default function Products() {
 											)}
 										</Form.Select>
 									</Form.Group>
-									{/* Color */}
+									{/* Color
 									<Form.Group className='mb-3'>
 										<Form.Label>Color</Form.Label>
 										<Form.Select
@@ -276,7 +276,7 @@ export default function Products() {
 												searchOptions.colors
 											)}
 										</Form.Select>
-									</Form.Group>
+									</Form.Group> */}
 									{/* Min Cost */}
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Min Cost</Form.Label>
