@@ -11,9 +11,9 @@ export default function ProductCard(props) {
   return (
     <Card className="card-product">
       <Card.Img variant="top" src={imageUrl} />
-      <Card.Body className="d-flex flex-column">
-        <Card.Title className="mb-4">{productName}</Card.Title>
-        <Button variant="primary" as={Link} to={`/products/${props.product.id}/view`}>View</Button>
+      <Card.Body className="d-flex flex-column justify-content-between">
+        <Card.Title>{productName}</Card.Title>
+        <Button className="mt-3" variant="primary" as={Link} to={`/products/${props.product.id}/view`}>View</Button>
       </Card.Body>
     </Card>
   )

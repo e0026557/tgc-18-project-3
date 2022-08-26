@@ -157,7 +157,6 @@ body {
 /* --- Product Card --- */
 .card-product {
   width: 300px;
-  height: fit-content;
   background-color: #dcd4bb;
   overflow: hidden;
   padding: 0;
