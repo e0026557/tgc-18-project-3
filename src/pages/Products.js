@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import Spinner from '../components/Spinner';
 import Button from 'react-bootstrap/Button';
 import ProductCard from '../components/ProductCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 // *** CONTEXTS ***
 import ProductsContext from '../contexts/ProductsContext';
@@ -118,7 +120,25 @@ export default function Products() {
 
 				{contentLoaded ? (
 					<div className='row mt-5'>
-						{/* Search Panel */}
+						{/* Search Panel (Mobile) */}
+						<div className='d-flex justify-content-center align-items-center d-lg-none'>
+							{/* Model */}
+							<Form.Group>
+								<Form.Control
+									type='text'
+									name='model'
+									placeholder='Search model'
+									value={formFields.model}
+									onChange={updateFormFields}
+								/>
+							</Form.Group>
+							{/* Search button */}
+							<Button variant='primary' onClick={searchProducts}>
+								<FontAwesomeIcon icon={faMagnifyingGlass} />
+							</Button>
+						</div>
+
+						{/* Search Panel (Desktop) */}
 						<div className='d-none d-lg-block col-lg-4'>
 							<div className='container search-box px-4 py-4'>
 								<h5>Search</h5>
@@ -263,7 +283,7 @@ export default function Products() {
 										<Form.Control
 											type='number'
 											name='min_cost'
-											min="0"
+											min='0'
 											value={formFields.min_cost}
 											onChange={updateFormFields}
 										/>
@@ -282,7 +302,7 @@ export default function Products() {
 										<Form.Control
 											type='number'
 											name='max_cost'
-											min="1"
+											min='1'
 											value={formFields.max_cost}
 											onChange={updateFormFields}
 										/>
