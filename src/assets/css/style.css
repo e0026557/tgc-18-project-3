@@ -16,6 +16,8 @@
 - #10221d
 
 - #f4ebd0 (cream)
+-- Shades:
+- #dcd4bb
 
 - #b68d40 (tan)
 
@@ -42,6 +44,12 @@ body {
   color: #d6ad60 !important;
 }
 
+/* --- Adjustments --- */
+/* Account for navbar height */
+.adjust-margin-top {
+  margin-top: 62px;
+}
+
 /* --- BUTTONS --- */
 .btn:focus,
 .btn:active:focus {
@@ -58,10 +66,6 @@ body {
   background-color: #10221d !important;
 }
 
-/* Account for navbar height */
-.adjust-margin-top {
-  margin-top: 62px;
-}
 
 /* *** SMALL SCREEN SETTINGS *** */
 /* --- NAVBAR --- */
@@ -136,12 +140,30 @@ body {
   padding: 8px 16px;
 }
 
+/* --- Product Card --- */
+.card-product {
+  width: 300px;
+  height: 400px;
+  background-color: #dcd4bb;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+
+  border: 1px solid #d6ad60;
+}
+
+.card-img-top {
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+}
+
 /* *** MEDIUM SCREEN SETTINGS (768PX AND ABOVE) *** */
 @media screen and (min-width: 768px) {
+
   /* --- GENERAL --- */
-  .adjust-margin-top {
-    margin-top: 74px;
-  }
+  /* --- Adjustments --- */
+  /* Account for navbar height */
 
   /* --- NAVBAR --- */
   .navbar-brand.logo {

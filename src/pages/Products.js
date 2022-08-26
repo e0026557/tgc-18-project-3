@@ -2,8 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Spinner from '../components/Spinner';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import ProductCard from '../components/ProductCard';
 
 // *** CONTEXTS ***
 import ProductsContext from '../contexts/ProductsContext';
@@ -13,19 +12,21 @@ export default function Products() {
 	const productsContext = useContext(ProductsContext);
 
 	// States
+	const [query, setQuery] = useState({});
 	const [products, setProducts] = useState([]);
 	const [contentLoaded, setContentLoaded] = useState(false);
 
 	useEffect(() => {
 		(async () => {
-			const products = await productsContext.getProducts();
+			const products = await productsContext.getProducts(query);
 			await setProducts(products);
 			await setContentLoaded(true);
 		})();
-	}, []);
+	}, [query]);
 
 	return (
 		<React.Fragment>
+			{/* Hero Section */}
 			<section className='container-fluid section-hero adjust-margin-top'>
 				<div className='hero-text-box'>
 					<h1 className='hero-heading'>InkStone</h1>
@@ -44,17 +45,22 @@ export default function Products() {
 				id='section-products'
 			>
 				<h1>Products</h1>
-				{contentLoaded ? (
-					products.map((product) => {
-						return (
-							<li>
-								{product.brand.brand} {product.model}
-							</li>
-						);
-					})
-				) : (
-					<Spinner />
-				)}
+				<div className='row px-5'>
+					{contentLoaded ? (
+						products.map((product) => {
+							return (
+								<div
+									key={product.id}
+									className='col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3'
+								>
+									<ProductCard product={product} />
+								</div>
+							);
+						})
+					) : (
+						<Spinner />
+					)}
+				</div>
 			</section>
 		</React.Fragment>
 	);
