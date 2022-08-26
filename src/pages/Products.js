@@ -599,7 +599,9 @@ export default function Products() {
 										);
 									})
 								) : (
-									<span>No products found</span>
+									<div className="mt-4 mb-5">
+										<span className='product-message'>No products found</span>
+									</div>
 								)}
 							</div>
 						</div>
