@@ -8,13 +8,20 @@ import ProductsContext from '../contexts/ProductsContext';
 const BASE_API_URL = 'https://inkstone-express.herokuapp.com/api';
 
 export default function ProductsProvider(props) {
+	// States
+	const [products, setProducts] = useState([]);
+
 	// Product context
 	const productsContext = {
-		getProducts: async (query) => {
+		getProducts: () => {
+			return products;
+		},
+		getProductsByQuery: async (query) => {
 			const response = await axios.get(BASE_API_URL + '/products', {
 				params: query
 			});
 			const products = response.data.data.products;
+			setProducts(products);
 			return products;
 		},
 		getSearchOptions: async () => {

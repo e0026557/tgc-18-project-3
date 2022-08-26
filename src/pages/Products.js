@@ -11,10 +11,11 @@ import { Form } from 'react-bootstrap';
 export default function Products() {
 	// Consume products context
 	const productsContext = useContext(ProductsContext);
+	const products = productsContext.getProducts() || [];
 
 	// States
 	const [query, setQuery] = useState({});
-	const [products, setProducts] = useState([]);
+	// const [products, setProducts] = useState([]);
 	const [searchOptions, setSearchOptions] = useState({});
 	const [contentLoaded, setContentLoaded] = useState(false);
 	const [formFields, setFormFields] = useState({
@@ -32,6 +33,7 @@ export default function Products() {
 		color_id: '0'
 	});
 
+	// Retrieve all search options
 	useEffect(() => {
 		(async () => {
 			const searchOptions = await productsContext.getSearchOptions();
@@ -39,10 +41,11 @@ export default function Products() {
 		})();
 	}, []);
 
+	// Trigger new product search on change of state variable for query
 	useEffect(() => {
 		(async () => {
-			const products = await productsContext.getProducts(query);
-			await setProducts(products);
+			await productsContext.getProductsByQuery(query);
+			// await setProducts(products);
 			await setContentLoaded(true);
 		})();
 	}, [query]);
