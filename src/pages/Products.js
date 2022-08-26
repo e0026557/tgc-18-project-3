@@ -45,22 +45,38 @@ export default function Products() {
 				id='section-products'
 			>
 				<h1>Products</h1>
-				<div className='row px-5'>
-					{contentLoaded ? (
-						products.map((product) => {
-							return (
-								<div
-									key={product.id}
-									className='col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3'
-								>
-									<ProductCard product={product} />
+
+				{contentLoaded ? (
+					<div className='row'>
+						{/* Search Panel */}
+						<div className='d-none d-lg-block col-lg-4'>
+							<div className='search-box'>
+								<h5>Search</h5>
+
+								<div>
+									<label className='form-label'></label>
 								</div>
-							);
-						})
-					) : (
-						<Spinner />
-					)}
-				</div>
+							</div>
+						</div>
+						{/* Product Listing */}
+						<div className='col-12 col-lg-8'>
+							<div className='row px-5'>
+								{products.map((product) => {
+									return (
+										<div
+											key={product.id}
+											className='col-12 col-md-6 col-lg-4 d-flex justify-content-center my-3'
+										>
+											<ProductCard product={product} />
+										</div>
+									);
+								})}
+							</div>
+						</div>
+					</div>
+				) : (
+					<Spinner />
+				)}
 			</section>
 		</React.Fragment>
 	);
