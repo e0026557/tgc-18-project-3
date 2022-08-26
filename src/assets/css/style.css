@@ -53,6 +53,20 @@ body {
   margin-top: 62px;
 }
 
+.border-radius-none {
+  border-radius: 0;
+}
+
+.border-radius-left-none {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.border-radius-right-none {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 /* --- BUTTONS --- */
 .btn:focus,
 .btn:active:focus,
@@ -85,6 +99,15 @@ body {
 /* --- Colors --- */
 .error {
   color: red;
+}
+
+/* --- Offcanvas --- */
+.offcanvas-header {
+  background-color: #f4ebd0;
+}
+
+.offcanvas-body {
+  background-color: #dcd4bb;
 }
 
 /* *** SMALL SCREEN SETTINGS *** */
