@@ -117,10 +117,10 @@ export default function Products() {
 				<h1>Products</h1>
 
 				{contentLoaded ? (
-					<div className='row'>
+					<div className='row mt-5'>
 						{/* Search Panel */}
 						<div className='d-none d-lg-block col-lg-4'>
-							<div className='search-box'>
+							<div className='container search-box px-4 py-4'>
 								<h5>Search</h5>
 
 								<div className='row'>
@@ -263,6 +263,7 @@ export default function Products() {
 										<Form.Control
 											type='number'
 											name='min_cost'
+											min="0"
 											value={formFields.min_cost}
 											onChange={updateFormFields}
 										/>
@@ -281,6 +282,7 @@ export default function Products() {
 										<Form.Control
 											type='number'
 											name='max_cost'
+											min="1"
 											value={formFields.max_cost}
 											onChange={updateFormFields}
 										/>

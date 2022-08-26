@@ -160,6 +160,12 @@ body {
   padding: 8px 16px;
 }
 
+/* --- Search Panel --- */
+.search-box {
+  background-color: #dcd4bb;
+  border-radius: 16px;
+}
+
 /* --- Product Card --- */
 .card-product {
   width: 300px;
