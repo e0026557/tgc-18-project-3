@@ -18,6 +18,7 @@ export default function Products() {
 	// const [products, setProducts] = useState([]);
 	const [searchOptions, setSearchOptions] = useState({});
 	const [contentLoaded, setContentLoaded] = useState(false);
+	const [costError, setCostError] = useState(false);
 	const [formFields, setFormFields] = useState({
 		brand_id: '0',
 		model: '',
@@ -59,10 +60,26 @@ export default function Products() {
 	};
 
 	const searchProducts = () => {
+		// Check that min and max cost are valid
+		if (
+			formFields.min_cost !== '' &&
+			formFields.max_cost !== '' &&
+			Number(formFields.min_cost) > Number(formFields.max_cost)
+		) {
+			setCostError(true);
+			return;
+		} else {
+			setCostError(false);
+		}
+
 		const query = {
 			...formFields,
-			min_cost: formFields.min_cost ? formFields.min_cost * 100 : '',
-			max_cost: formFields.max_cost ? formFields.max_cost * 100 : ''
+			min_cost: formFields.min_cost
+				? parseInt(formFields.min_cost * 100)
+				: '',
+			max_cost: formFields.max_cost
+				? parseInt(formFields.max_cost * 100)
+				: ''
 		};
 		setQuery(query);
 	};
@@ -244,22 +261,40 @@ export default function Products() {
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Min Cost</Form.Label>
 										<Form.Control
-											type='text'
+											type='number'
 											name='min_cost'
 											value={formFields.min_cost}
 											onChange={updateFormFields}
 										/>
+										{costError ? (
+											<Form.Text className='error'>
+												Min cost must be less than max
+												cost
+											</Form.Text>
+										) : (
+											''
+										)}
 									</Form.Group>
 									{/* Max Cost */}
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Max Cost</Form.Label>
 										<Form.Control
-											type='text'
+											type='number'
 											name='max_cost'
 											value={formFields.max_cost}
 											onChange={updateFormFields}
 										/>
+										{costError ? (
+											<Form.Text className='error'>
+												Max cost must be greater than
+												min cost
+											</Form.Text>
+										) : (
+											''
+										)}
 									</Form.Group>
+
+									{/* Search button */}
 									<Button
 										variant='primary'
 										className='mt-3'
