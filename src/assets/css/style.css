@@ -71,7 +71,9 @@ body {
   background-color: #10221d !important;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary:active,
+.btn-primary:focus {
   background-color: #ccaf79;
   border: none !important;
 }
@@ -80,6 +82,10 @@ body {
   background-color: #bd9853;
 }
 
+/* --- Colors --- */
+.error {
+  color: red;
+}
 
 /* *** SMALL SCREEN SETTINGS *** */
 /* --- NAVBAR --- */
