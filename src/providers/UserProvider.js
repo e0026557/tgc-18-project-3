@@ -106,11 +106,28 @@ export default function UserProvider(props) {
 			}
 		},
 		refreshToken: async () => {
-			// Check if jwt token has expired or not
+			// Attempt to refresh token using current JWT and refresh tokens
+			try {
+				const response = await axios.post(BASE_API_URL + '/accounts/refresh', {
+					refreshToken: user.refreshToken
+				}, {
+					headers: {
+						Authorization: `Bearer ${user.accessToken}`
+					}
+				});
 
-			// If jwt token has expired, redirect to login page
-
-			// Else refresh tokens
+				const accessToken = response.data.data.accessToken;
+				setUser({
+					...user,
+					accessToken: accessToken
+				});
+			}
+			// If jwt token has expired or is invalid, redirect to login page
+			catch (error) {
+				console.log(error);
+				setUser({});
+				navigateTo('/login');
+			}
 		}
 	};
 
