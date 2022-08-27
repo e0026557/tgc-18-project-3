@@ -84,6 +84,33 @@ export default function UserProvider(props) {
 					toast.error('An error occurred while logging in. Please try again');
 				}
 			}
+		},
+		logoutUser: async () => {
+			try {
+				await axios.post(BASE_API_URL + '/accounts/logout', {
+					refreshToken: user.refreshToken
+				}, {
+					headers: {
+						Authorization: `Bearer ${user.accessToken}`
+					}
+				});
+
+				// Clear state
+				setUser({});
+
+				toast.success('Logged out successfully');
+				navigateTo('/');
+			} catch (error) {
+				console.log(error);
+				toast.error('An error occurred while logging out. Please try again');
+			}
+		},
+		refreshToken: async () => {
+			// Check if jwt token has expired or not
+
+			// If jwt token has expired, redirect to login page
+
+			// Else refresh tokens
 		}
 	};
 
