@@ -101,13 +101,13 @@ export default function Register(props) {
 	return (
 		<React.Fragment>
 			<section className='container-fluid section-register adjust-margin-top'>
-				<div className='container'>
+				<div className='container container-register py-4 py-lg-5'>
 					<h1>Register</h1>
 
 					{/* Register Form */}
-					<div className='row'>
+					<div className='form-register row mt-3 mt-md-4 px-2 py-3 px-md-3 py-md-4 px-lg-4'>
 						{/* Name */}
-						<Form.Group className='mb-3'>
+						<Form.Group className='col-12 col-md-6 mb-2 mb-md-3'>
 							<Form.Label>Name</Form.Label>
 							<Form.Control
 								type='text'
@@ -126,7 +126,7 @@ export default function Register(props) {
 							)}
 						</Form.Group>
 						{/* Username */}
-						<Form.Group className='mb-3'>
+						<Form.Group className='col-12 col-md-6 mb-2 mb-md-3'>
 							<Form.Label>Username</Form.Label>
 							<Form.Control
 								type='text'
@@ -151,7 +151,7 @@ export default function Register(props) {
 							)}
 						</Form.Group>
 						{/* Email */}
-						<Form.Group className='mb-3'>
+						<Form.Group className='col-12 col-md-6 mb-2 mb-md-3'>
 							<Form.Label>Email</Form.Label>
 							<Form.Control
 								type='email'
@@ -168,8 +168,25 @@ export default function Register(props) {
 								''
 							)}
 						</Form.Group>
+						{/* Contact Number */}
+						<Form.Group className='col-12 col-md-6 mb-2 mb-md-3'>
+							<Form.Label>Contact Number</Form.Label>
+							<Form.Control
+								type='text'
+								name='contact_number'
+								value={formFields.contact_number}
+								onChange={updateFormFields}
+							/>
+							{errors.includes('contact_number') ? (
+								<Form.Text className='error'>
+									Invalid contact number
+								</Form.Text>
+							) : (
+								''
+							)}
+						</Form.Group>
 						{/* Password */}
-						<Form.Group className='mb-3'>
+						<Form.Group className='mb-2 mb-md-3'>
 							<Form.Label>Password</Form.Label>
 							<Form.Control
 								type='password'
@@ -187,7 +204,7 @@ export default function Register(props) {
 							)}
 						</Form.Group>
 						{/* Confirm Password */}
-						<Form.Group className='mb-3'>
+						<Form.Group className='mb-2 mb-md-3'>
 							<Form.Label>Confirm Password</Form.Label>
 							<Form.Control
 								type='password'
@@ -203,30 +220,13 @@ export default function Register(props) {
 								''
 							)}
 						</Form.Group>
-						{/* Contact Number */}
-						<Form.Group className='mb-3'>
-							<Form.Label>Contact Number</Form.Label>
-							<Form.Control
-								type='text'
-								name='contact_number'
-								value={formFields.contact_number}
-								onChange={updateFormFields}
-							/>
-							{errors.includes('contact_number') ? (
-								<Form.Text className='error'>
-									Invalid contact number
-								</Form.Text>
-							) : (
-								''
-							)}
-						</Form.Group>
-						<Button
-							variant='primary'
-							className='mt-3'
-							onClick={registerUser}
-						>
-							Register
-						</Button>
+
+						<div className='d-flex justify-content-center mt-3 mt-md-4'>
+							{/* Register Button */}
+							<Button variant='primary' onClick={registerUser}>
+								Register
+							</Button>
+						</div>
 					</div>
 				</div>
 			</section>

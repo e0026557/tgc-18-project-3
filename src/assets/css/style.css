@@ -211,6 +211,12 @@ body {
   aspect-ratio: 1 / 1;
 }
 
+/* --- Login / Register --- */
+.form-register {
+  background-color: #dcd4bb;
+  border-radius: 16px;
+}
+
 /* *** MEDIUM SCREEN SETTINGS (768PX AND ABOVE) *** */
 @media screen and (min-width: 768px) {
 
@@ -260,15 +266,21 @@ body {
     font-weight: 500;
     padding: 8px 16px;
   }
+
+  /* --- Login / Register --- */
+  .container-register {
+    width: 700px;
+  }
 }
 
 /* *** LARGE SCREEN SETTINGS (992PX AND ABOVE) *** */
 @media screen and (min-width: 992px) {
+
   /* --- Products Section --- */
   .section-products {
     position: relative;
   }
- 
+
   .search-box {
     position: sticky;
     top: 15%;
