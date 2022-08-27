@@ -138,6 +138,24 @@ body {
   color: #debd80 !important;
 }
 
+.dropdown-menu {
+  background-color: #122620 !important;
+  border-color: #d6ad60 !important
+}
+
+.dropdown-item {
+  color: #d6ad60 !important;
+  font-weight: 500;
+}
+
+.dropdown-item:hover {
+  background-color: #41514d !important;
+}
+
+.dropdown-divider {
+  border-color: #d6ad60 !important
+}
+
 /* --- Hero Section --- */
 .section-hero {
   height: calc(100vh - 62px);

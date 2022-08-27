@@ -33,8 +33,11 @@ export default function UserProvider(props) {
 				return false;
 			}
 		},
-		getUser: () => {
-			return user;
+		checkIfAuthenticated: () => {
+			if (user.accessToken && user.refreshToken) {
+				return true;
+			}
+			return false;
 		},
 		registerUser: async (userData) => {
 			try {
