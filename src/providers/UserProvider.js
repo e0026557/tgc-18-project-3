@@ -55,19 +55,32 @@ export default function UserProvider(props) {
 					navigateTo('/');
 				}
 			} catch (error) {
-				console.log(error.response.data.data);
+				console.log(error);
 				toast.error('An error occurred while registering. Please try again');
 			}
 		},
 		loginUser: async (userData) => {
-			const response = await axios.post(BASE_API_URL + '/accounts/login', userData);
-			const accessToken = response.data.data.accessToken;
-			const refreshToken = response.data.data.refreshToken;
+			try {
+				const response = await axios.post(BASE_API_URL + '/accounts/login', userData);
 
-			setUser({
-				accessToken,
-				refreshToken
-			});
+				setUser({
+					accessToken: response.data.data.accessToken,
+					refreshToken: response.data.data.refreshToken
+				});
+
+				// Redirect to home page
+				navigateTo('/');
+				return true;
+
+			} catch (error) {
+				console.log(error);
+				if (error.response.data.status === 'fail') {
+					toast.error('Invalid username and/or password');
+				}
+				else {
+					toast.error('An error occurred while logging in. Please try again');
+				}
+			}
 		}
 	};
 

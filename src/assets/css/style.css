@@ -212,7 +212,8 @@ body {
 }
 
 /* --- Login / Register --- */
-.form-register {
+.form-register,
+.form-login {
   background-color: #dcd4bb;
   border-radius: 16px;
 }
@@ -268,7 +269,8 @@ body {
   }
 
   /* --- Login / Register --- */
-  .container-register {
+  .container-register,
+  .container-login {
     width: 700px;
   }
 }
