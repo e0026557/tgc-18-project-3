@@ -11,6 +11,7 @@ import Navigation from './components/Navigation';
 import Products from './pages/Products';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Orders from './pages/Orders';
 import NotFound from './pages/NotFound';
 
 // *** PROVIDERS ***
@@ -29,6 +30,7 @@ function App() {
 
 					{/* Routes */}
 					<Routes>
+
 						{/* Products Route */}
 						<Route
 							path='/'
@@ -42,6 +44,9 @@ function App() {
 						{/* Accounts Routes */}
 						<Route path='/login' element={<Login />} />
 						<Route path='/register' element={<Register />} />
+
+						{/* Order Routes */}
+						<Route path='/orders' element={<Orders />} />
 
 						{/* 404 Not Found Page */}
 						<Route path='*' element={<NotFound />} />
