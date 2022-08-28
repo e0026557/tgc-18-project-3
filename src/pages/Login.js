@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-toastify';
 import UserContext from '../contexts/UserContext';
 
 export default function Login(props) {
@@ -26,6 +27,9 @@ export default function Login(props) {
 		const result = await userContext.loginUser(formFields);
 		if (!result) {
 			setErrors(['error']);
+		}
+		else {
+			toast.success('Welcome back');
 		}
 	};
 
