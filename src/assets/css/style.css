@@ -229,6 +229,13 @@ body {
   aspect-ratio: 1 / 1;
 }
 
+/* --- Product View --- */
+.variant-img {
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #bd9853;
+}
+
 /* --- Login / Register --- */
 .form-register,
 .form-login {
