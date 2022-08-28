@@ -30,6 +30,11 @@ export default function ProductsProvider(props) {
 			);
 			const searchOptions = response.data.data.options;
 			return searchOptions;
+		},
+		getProductById: async (productId) => {
+			const response = await axios.get(BASE_API_URL + '/products/' + productId);
+			const product = response.data.data.product;
+			return product;
 		}
 	};
 
