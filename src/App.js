@@ -9,6 +9,7 @@ import './assets/css/spinner.css';
 import Toastify from './components/Toastify';
 import Navigation from './components/Navigation';
 import Products from './pages/Products';
+import ProductDetails from './pages/ProductDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Orders from './pages/Orders';
@@ -30,13 +31,20 @@ function App() {
 
 					{/* Routes */}
 					<Routes>
-
 						{/* Products Route */}
 						<Route
 							path='/'
 							element={
 								<ProductsProvider>
 									<Products />
+								</ProductsProvider>
+							}
+						/>
+						<Route
+							path='/products/:productId/view'
+							element={
+								<ProductsProvider>
+									<ProductDetails />
 								</ProductsProvider>
 							}
 						/>
