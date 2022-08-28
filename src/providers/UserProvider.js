@@ -121,12 +121,14 @@ export default function UserProvider(props) {
 					...user,
 					accessToken: accessToken
 				});
+				return true; // Indicate success
 			}
 			// If jwt token has expired or is invalid, redirect to login page
 			catch (error) {
 				console.log(error);
 				setUser({});
 				navigateTo('/login');
+				return false; // Indicate failure
 			}
 		}
 	};
