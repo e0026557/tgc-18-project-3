@@ -273,6 +273,10 @@ body {
   border-radius: 16px;
 }
 
+.quantity-input {
+  width: fit-content;
+}
+
 /* --- Login / Register --- */
 .form-register,
 .form-login {

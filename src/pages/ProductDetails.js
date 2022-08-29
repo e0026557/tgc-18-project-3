@@ -100,7 +100,8 @@ export default function ProductDetails(props) {
 				nib_material_id: product.variants[0].nib_material_id,
 				nib_shape_id: product.variants[0].nib_shape_id,
 				nib_size_id: product.variants[0].nib_size_id,
-				nib_flexibility_id: product.variants[0].nib_flexibility_id
+				nib_flexibility_id: product.variants[0].nib_flexibility_id,
+				quantity: 1
 			});
 			await setContentLoaded(true);
 		})();
@@ -160,6 +161,7 @@ export default function ProductDetails(props) {
 
 			if (variants.length) {
 				setFormFields({
+					...formFields,
 					color_id: variants[0].color_id,
 					nib_material_id: variants[0].nib_material_id,
 					nib_shape_id: variants[0].nib_shape_id,
@@ -184,6 +186,7 @@ export default function ProductDetails(props) {
 
 			if (variants.length) {
 				setFormFields({
+					...formFields,
 					color_id: variants[0].color_id,
 					nib_material_id: variants[0].nib_material_id,
 					nib_shape_id: variants[0].nib_shape_id,
@@ -206,6 +209,7 @@ export default function ProductDetails(props) {
 
 			if (variants.length) {
 				setFormFields({
+					...formFields,
 					color_id: variants[0].color_id,
 					nib_material_id: variants[0].nib_material_id,
 					nib_shape_id: variants[0].nib_shape_id,
@@ -225,6 +229,7 @@ export default function ProductDetails(props) {
 
 			if (variants.length) {
 				setFormFields({
+					...formFields,
 					color_id: variants[0].color_id,
 					nib_material_id: variants[0].nib_material_id,
 					nib_shape_id: variants[0].nib_shape_id,
@@ -238,6 +243,18 @@ export default function ProductDetails(props) {
 
 	// --- FUNCTIONS ---
 	const updateFormFields = (event) => {
+		// Check that quantity does not exceed stock
+		if (
+			event.target.name === 'quantity' &&
+			parseInt(event.target.value) > parseInt(variant.stock)
+		) {
+			setFormFields({
+				...formFields,
+				[event.target.name]: variant.stock
+			});
+			return;
+		}
+
 		setFormFields({
 			...formFields,
 			[event.target.name]: event.target.value
@@ -572,6 +589,18 @@ export default function ProductDetails(props) {
 													searchOptions.nibMaterials
 												)}
 											</Form.Select>
+										</Form.Group>
+										{/* Quantity */}
+										<Form.Group className='mb-2 quantity-input'>
+											<Form.Label>Quantity</Form.Label>
+											<Form.Control
+												name='quantity'
+												type='number'
+												min={1}
+												max={variant.stock}
+												value={formFields.quantity}
+												onChange={updateFormFields}
+											/>
 										</Form.Group>
 
 										{/* Add to cart button */}
