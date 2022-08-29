@@ -8,6 +8,7 @@ import Accordion from 'react-bootstrap/Accordion';
 
 // *** CONTEXTS ***
 import ProductsContext from '../contexts/ProductsContext';
+import UserContext from '../contexts/UserContext';
 
 export default function ProductDetails(props) {
 	// Get product ID from params
@@ -15,6 +16,9 @@ export default function ProductDetails(props) {
 
 	// Consume products context
 	const productsContext = useContext(ProductsContext);
+
+	// Consume user context
+	const userContext = useContext(UserContext);
 
 	// States
 	const [product, setProduct] = useState({});
@@ -606,7 +610,12 @@ export default function ProductDetails(props) {
 										{/* Add to cart button */}
 										<div className='d-flex justify-content-center mt-4'>
 											{variant.stock ? (
-												<Button variant='primary'>
+												<Button
+													variant='primary'
+													onClick={() => {
+														userContext.addToCart(variant.id, formFields.quantity);
+													}}
+												>
 													Add to Cart
 												</Button>
 											) : (
