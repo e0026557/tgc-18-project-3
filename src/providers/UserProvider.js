@@ -12,6 +12,7 @@ const BASE_API_URL = 'https://inkstone-express.herokuapp.com/api';
 export default function UserProvider(props) {
 	// States
 	const [user, setUser] = useState({});
+	const [redirectTo, setRedirectTo] = useState('');
 
 	const navigateTo = useNavigate();
 
@@ -71,8 +72,14 @@ export default function UserProvider(props) {
 					refreshToken: response.data.data.refreshToken
 				});
 
-				// Redirect to home page
-				navigateTo('/');
+				// Redirect to home page or intended route
+				if (redirectTo) {
+					navigateTo(redirectTo);
+					setRedirectTo('');
+				}
+				else {
+					navigateTo('/');
+				}
 				return true;
 
 			} catch (error) {
@@ -129,6 +136,33 @@ export default function UserProvider(props) {
 				setUser({});
 				navigateTo('/login');
 				return false; // Indicate failure
+			}
+		},
+		addToCart: async (variantId, quantity) => {
+			// Check that user is logged in
+			if (!userContext.checkIfAuthenticated()) {
+				setRedirectTo(`/products/${variantId}/view`);
+				toast.error('You must be logged in first');
+				navigateTo('/login');
+			}
+			else {
+				try {
+					const response = await axios.post(BASE_API_URL + `/cart/${variantId}/add`, {
+						quantity: parseInt(quantity)
+					}, {
+						headers: {
+							Authorization: `Bearer ${user.accessToken}`
+						}
+					});
+
+					const result = response.data.status;
+					if (result === 'success') {
+						toast.success('Item added to cart successfully');
+					}
+				} catch (error) {
+					console.log(error);
+					toast.error('An occurred while adding to cart. Please try again');
+				}
 			}
 		}
 	};
