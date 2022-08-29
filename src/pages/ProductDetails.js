@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Form from 'react-bootstrap/Form';
-import { toast } from 'react-toastify';
+import Accordion from 'react-bootstrap/Accordion';
 
 // *** CONTEXTS ***
 import ProductsContext from '../contexts/ProductsContext';
@@ -412,11 +412,11 @@ export default function ProductDetails(props) {
 				{contentLoaded ? (
 					<React.Fragment>
 						{/* Product View (Desktop) */}
-						<div className='container pt-5'>
-							<div className='row'>
+						<div className='container pt-4'>
+							<div className='d-flex justify-content-center gap-5'>
 								{/* Product Image Section */}
-								<div className='d-flex justify-content-end col-5'>
-									<div className='variant-img-box'>
+								<div className='d-flex justify-content-center col-5'>
+									<div className='variant-img-box p-5'>
 										<img
 											className='variant-img'
 											src={variant.image_url}
@@ -424,43 +424,74 @@ export default function ProductDetails(props) {
 										/>
 									</div>
 								</div>
-								{/* Divider */}
-								<div className='col bg-primary'></div>
 								{/* Product Details Section */}
 								<div className='d-flex flex-column justify-content-start col-5'>
-									<h3 className='product-header'>
+									<h2 className='product-header pt-4'>
 										{product.brand.brand} {product.model}
-									</h3>
+									</h2>
 
-									<div className='product-specs-box'>
-										<ul>
-											<li>Weight: {product.weight}g</li>
-											<li>Length: {product.length}mm</li>
-											<li>
-												Diameter: {product.diameter}mm
-											</li>
-											<li>
-												Description: <br />
-												<p>{product.description}</p>
-											</li>
-											<li>
-												Cap Type:{' '}
-												{product.capType.cap_type}
-											</li>
-											<li>
-												Cost: $
-												{(variant.cost / 100).toFixed(
-													2
-												)}
-											</li>
-											<li>Stock: {variant.stock}</li>
-										</ul>
-									</div>
+									<h4 className='mt-1 mb-3'>
+										${(variant.cost / 100).toFixed(2)}
+									</h4>
+
+									{/* Product Details */}
+									<Accordion
+										defaultActiveKey={['0']}
+										alwaysOpen
+										className='mb-4'
+									>
+										<Accordion.Item eventKey='0'>
+											<Accordion.Header>
+												Specifications
+											</Accordion.Header>
+											<Accordion.Body>
+												<ul>
+													<li>
+														<span className='product-specification-header'>
+															Weight:{' '}
+														</span>
+														{product.weight}g
+													</li>
+													<li>
+														<span className='product-specification-header'>
+															Length:{' '}
+														</span>
+														{product.length}
+														mm
+													</li>
+													<li>
+														<span className='product-specification-header'>
+															Diameter:{' '}
+														</span>
+														{product.diameter}mm
+													</li>
+													<li>
+														<span className='product-specification-header'>
+															Cap Type:{' '}
+														</span>
+														{
+															product.capType
+																.cap_type
+														}
+													</li>
+												</ul>
+											</Accordion.Body>
+										</Accordion.Item>
+										<Accordion.Item eventKey='1'>
+											<Accordion.Header>
+												Description
+											</Accordion.Header>
+											<Accordion.Body className='px-4 py-4'>
+												{product.description}
+											</Accordion.Body>
+										</Accordion.Item>
+									</Accordion>
 
 									{/* Variant Selection */}
-									<div className='variant-selection-box'>
+									<div className='container variant-selection-box px-4 py-3 mb-4'>
+										<h5>Select variant:</h5>
 										{/* Color */}
-										<Form.Group className='mb-3'>
+										<Form.Group className='mb-2'>
 											<Form.Label>Color</Form.Label>
 											<Form.Select
 												name='color_id'
@@ -473,7 +504,7 @@ export default function ProductDetails(props) {
 											</Form.Select>
 										</Form.Group>
 										{/* Nib Shape */}
-										<Form.Group className='mb-3'>
+										<Form.Group className='mb-2'>
 											<Form.Label>Nib Shape</Form.Label>
 											<Form.Select
 												name='nib_shape_id'
@@ -486,7 +517,7 @@ export default function ProductDetails(props) {
 											</Form.Select>
 										</Form.Group>
 										{/* Nib Size */}
-										<Form.Group className='mb-3'>
+										<Form.Group className='mb-2'>
 											<Form.Label>Nib Size</Form.Label>
 											<Form.Select
 												name='nib_size_id'
@@ -499,7 +530,7 @@ export default function ProductDetails(props) {
 											</Form.Select>
 										</Form.Group>
 										{/* Nib Flexibility */}
-										<Form.Group className='mb-3'>
+										<Form.Group className='mb-2'>
 											<Form.Label>
 												Nib Flexibility
 											</Form.Label>
@@ -516,7 +547,7 @@ export default function ProductDetails(props) {
 											</Form.Select>
 										</Form.Group>
 										{/* Nib Material */}
-										<Form.Group className='mb-3'>
+										<Form.Group className='mb-2'>
 											<Form.Label>
 												Nib Material
 											</Form.Label>
