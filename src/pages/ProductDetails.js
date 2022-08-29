@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 
 // *** CONTEXTS ***
@@ -430,15 +431,24 @@ export default function ProductDetails(props) {
 										{product.brand.brand} {product.model}
 									</h2>
 
-									<h4 className='mt-1 mb-3'>
+									<h4 className='mt-1 mb-2'>
 										${(variant.cost / 100).toFixed(2)}
 									</h4>
+
+									{/*  Render quantity info when low on stock */}
+									{variant.stock <= 30 ? (
+										<span className='product-quantity-info'>
+											Only {variant.stock} left
+										</span>
+									) : (
+										''
+									)}
 
 									{/* Product Details */}
 									<Accordion
 										defaultActiveKey={['0']}
 										alwaysOpen
-										className='mb-4'
+										className='mt-3 mb-4'
 									>
 										<Accordion.Item eventKey='0'>
 											<Accordion.Header>
@@ -563,6 +573,22 @@ export default function ProductDetails(props) {
 												)}
 											</Form.Select>
 										</Form.Group>
+
+										{/* Add to cart button */}
+										<div className='d-flex justify-content-center mt-4'>
+											{variant.stock ? (
+												<Button variant='primary'>
+													Add to Cart
+												</Button>
+											) : (
+												<Button
+													disabled
+													variant='primary'
+												>
+													Out of Stock
+												</Button>
+											)}
+										</div>
 									</div>
 								</div>
 							</div>

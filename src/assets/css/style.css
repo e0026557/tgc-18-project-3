@@ -85,6 +85,11 @@ body {
   background-color: #10221d !important;
 }
 
+.btn:disabled {
+  background-color: #ccaf79;
+  opacity: 0.9;
+}
+
 .btn-primary,
 .btn-primary:active,
 .btn-primary:focus {
@@ -251,6 +256,11 @@ body {
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid #bd9853;
+}
+
+.product-quantity-info {
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .product-specification-header {
