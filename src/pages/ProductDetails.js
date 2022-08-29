@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-toastify';
 
 // *** CONTEXTS ***
 import ProductsContext from '../contexts/ProductsContext';
-import { toast } from 'react-toastify';
 
 export default function ProductDetails(props) {
 	// Get product ID from params
@@ -15,7 +15,7 @@ export default function ProductDetails(props) {
 	// Consume products context
 	const productsContext = useContext(ProductsContext);
 
-	// State
+	// States
 	const [product, setProduct] = useState({});
 	const [variant, setVariant] = useState({});
 	const [error, setError] = useState(false);
@@ -92,7 +92,8 @@ export default function ProductDetails(props) {
 			};
 
 			await setProduct(product);
-			await setVariant(product.variants[0]);
+			await setVariant(product.variants[0]); // Select the first variant by default
+			await setSearchOptions(searchOptions);
 			await setFormFields({
 				color_id: product.variants[0].color_id,
 				nib_material_id: product.variants[0].nib_material_id,
@@ -100,13 +101,14 @@ export default function ProductDetails(props) {
 				nib_size_id: product.variants[0].nib_size_id,
 				nib_flexibility_id: product.variants[0].nib_flexibility_id
 			});
-			await setSearchOptions(searchOptions);
 			await setContentLoaded(true);
 		})();
 	}, [productId]);
 
 	useEffect(() => {
+		// If product is rendered
 		if (product.variants) {
+			// Check if there is any variant based on the current selected specifications
 			const variants = product.variants.filter((variant) => {
 				if (
 					variant.color_id == formFields.color_id &&
@@ -120,33 +122,116 @@ export default function ProductDetails(props) {
 				}
 				return false;
 			});
-			console.log(variants);
 
-			// If there is variant with the selected specifications
+			// If there is variant based on the selected specifications
 			if (variants.length) {
-				setVariant(variants[0]);
+				setVariant(variants[0]); // Set the variant as selected
+				setError(false); // Reset error state
+				setSearchOptions(getAvailableOptions()); // Render all available options based on current selected specifications
 			}
-			// If there is no variant with the selected specifications
-			// set previous variant to the last selected variant in state
+
+			// If there is no variant based on the selected specifications, mark as error
 			else {
-				toast.error('There is no variant by the specifications');
 				setError(true);
 			}
 		}
 	}, [formFields]);
 
 	useEffect(() => {
-		// Trigger if there is an error
+		// Trigger if there is an error (when there is no variant by the selected specifications)
 		if (error) {
-			// Set form back to last selected variant specifications
-			setFormFields({
-				color_id: variant.color_id,
-				nib_material_id: variant.nib_material_id,
-				nib_shape_id: variant.nib_shape_id,
-				nib_size_id: variant.nib_size_id,
-				nib_flexibility_id: variant.nib_flexibility_id
+			// Get the variant with the closest specifications that matches the current selected specifications
+
+			// Check if there is any variant that matches the current specified color, nib shape, nib size, and nib flexibility (4 fields matched)
+			// -> Set the form fields to match the specification of the first variant
+			let variants = product.variants.filter((variant) => {
+				return (
+					parseInt(variant.color_id) ===
+						parseInt(formFields.color_id) &&
+					parseInt(variant.nib_shape_id) ===
+						parseInt(formFields.nib_shape_id) &&
+					parseInt(variant.nib_size_id) ===
+						parseInt(formFields.nib_size_id) &&
+					parseInt(variant.nib_flexibility_id) ===
+						parseInt(formFields.nib_flexibility_id)
+				);
 			});
-			setError(false); // Reset error state
+
+			if (variants.length) {
+				setFormFields({
+					color_id: variants[0].color_id,
+					nib_material_id: variants[0].nib_material_id,
+					nib_shape_id: variants[0].nib_shape_id,
+					nib_size_id: variants[0].nib_size_id,
+					nib_flexibility_id: variants[0].nib_flexibility_id
+				});
+				return;
+			}
+
+			// Check if there is any variant that matches the current specified color, nib shape, and nib size (3 fields matched)
+			// -> Set the form fields to match the specification of the first variant
+			variants = product.variants.filter((variant) => {
+				return (
+					parseInt(variant.color_id) ===
+						parseInt(formFields.color_id) &&
+					parseInt(variant.nib_shape_id) ===
+						parseInt(formFields.nib_shape_id) &&
+					parseInt(variant.nib_size_id) ===
+						parseInt(formFields.nib_size_id)
+				);
+			});
+
+			if (variants.length) {
+				setFormFields({
+					color_id: variants[0].color_id,
+					nib_material_id: variants[0].nib_material_id,
+					nib_shape_id: variants[0].nib_shape_id,
+					nib_size_id: variants[0].nib_size_id,
+					nib_flexibility_id: variants[0].nib_flexibility_id
+				});
+				return;
+			}
+
+			// Check if there is any variant that matches the current specified color, and nib shape (2 fields matched)
+			// -> Set the form fields to match the specification of the first variant
+			variants = product.variants.filter((variant) => {
+				return (
+					parseInt(variant.color_id) ===
+						parseInt(formFields.color_id) &&
+					parseInt(variant.nib_shape_id) ===
+						parseInt(formFields.nib_shape_id)
+				);
+			});
+
+			if (variants.length) {
+				setFormFields({
+					color_id: variants[0].color_id,
+					nib_material_id: variants[0].nib_material_id,
+					nib_shape_id: variants[0].nib_shape_id,
+					nib_size_id: variants[0].nib_size_id,
+					nib_flexibility_id: variants[0].nib_flexibility_id
+				});
+				return;
+			}
+
+			// Check if there is any variant that matches the current specified color (1 field matched)
+			// -> Set the form fields to match the specification of the first variant
+			variants = product.variants.filter((variant) => {
+				return (
+					parseInt(variant.color_id) === parseInt(formFields.color_id)
+				);
+			});
+
+			if (variants.length) {
+				setFormFields({
+					color_id: variants[0].color_id,
+					nib_material_id: variants[0].nib_material_id,
+					nib_shape_id: variants[0].nib_shape_id,
+					nib_size_id: variants[0].nib_size_id,
+					nib_flexibility_id: variants[0].nib_flexibility_id
+				});
+				return;
+			}
 		}
 	}, [error]);
 
@@ -166,6 +251,159 @@ export default function ProductDetails(props) {
 				</option>
 			);
 		});
+	};
+
+	const getAvailableOptions = () => {
+		const colors = getColorOptions();
+		const nibShapes = getNibShapeOptions();
+		const nibSizes = getNibSizeOptions();
+		const nibFlexibilities = getNibFlexibilityOptions();
+		const nibMaterials = getNibMaterialOptions();
+
+		return {
+			colors,
+			nibMaterials,
+			nibShapes,
+			nibSizes,
+			nibFlexibilities
+		};
+	};
+
+	const getColorOptions = () => {
+		// Get all colors of variants
+		const variants = product.variants;
+		const colors = [];
+
+		// Keep track of which choices appeared
+		const selectedColors = {};
+
+		for (let variant of variants) {
+			const color = [variant.color_id, variant.color.color];
+
+			// Check if option is already added
+			if (!selectedColors[color[0]]) {
+				colors.push(color);
+				selectedColors[color[0]] = color[1];
+			}
+		}
+
+		return colors;
+	};
+
+	const getNibShapeOptions = () => {
+		// Get all nib shapes of variants with the current specified color
+		const variants = product.variants.filter((variant) => {
+			return parseInt(variant.color_id) === parseInt(formFields.color_id);
+		});
+		const nibShapes = [];
+
+		// Keep track of which choices appeared
+		const selectedNibShapes = {};
+
+		for (let variant of variants) {
+			const nibShape = [variant.nib_shape_id, variant.nibShape.nib_shape];
+
+			// Check if option is already added
+			if (!selectedNibShapes[nibShape[0]]) {
+				nibShapes.push(nibShape);
+				selectedNibShapes[nibShape[0]] = nibShape[1];
+			}
+		}
+
+		return nibShapes;
+	};
+
+	const getNibSizeOptions = () => {
+		// Get all nib sizes of variants with the current specified color and nib shape
+		const variants = product.variants.filter((variant) => {
+			return (
+				parseInt(variant.color_id) === parseInt(formFields.color_id) &&
+				parseInt(variant.nib_shape_id) ===
+					parseInt(formFields.nib_shape_id)
+			);
+		});
+		const nibSizes = [];
+
+		// Keep track of which choices appeared
+		const selectedNibSizes = {};
+
+		for (let variant of variants) {
+			const nibSize = [variant.nib_size_id, variant.nibSize.nib_size];
+
+			// Check if option is already added
+			if (!selectedNibSizes[nibSize[0]]) {
+				nibSizes.push(nibSize);
+				selectedNibSizes[nibSize[0]] = nibSize[1];
+			}
+		}
+
+		return nibSizes;
+	};
+
+	const getNibFlexibilityOptions = () => {
+		// Get all nib flexibilities of variants with the current specified color, nib shape and nib size
+		const variants = product.variants.filter((variant) => {
+			return (
+				parseInt(variant.color_id) === parseInt(formFields.color_id) &&
+				parseInt(variant.nib_shape_id) ===
+					parseInt(formFields.nib_shape_id) &&
+				parseInt(variant.nib_size_id) ===
+					parseInt(formFields.nib_size_id)
+			);
+		});
+		const nibFlexibilities = [];
+
+		// Keep track of which choices appeared
+		const selectedNibFlexibilities = {};
+
+		for (let variant of variants) {
+			const nibFlexiblity = [
+				variant.nib_flexibility_id,
+				variant.nibFlexibility.nib_flexibility
+			];
+
+			// Check if option is already added
+			if (!selectedNibFlexibilities[nibFlexiblity[0]]) {
+				nibFlexibilities.push(nibFlexiblity);
+				selectedNibFlexibilities[nibFlexiblity[0]] = nibFlexiblity[1];
+			}
+		}
+
+		return nibFlexibilities;
+	};
+
+	const getNibMaterialOptions = () => {
+		// Get all nib materials of variants with the current specified color, nib shape, nib size, and nib flexibility
+		const variants = product.variants.filter((variant) => {
+			return (
+				parseInt(variant.color_id) === parseInt(formFields.color_id) &&
+				parseInt(variant.nib_shape_id) ===
+					parseInt(formFields.nib_shape_id) &&
+				parseInt(variant.nib_size_id) ===
+					parseInt(formFields.nib_size_id) &&
+				parseInt(variant.nib_flexibility_id) ===
+					parseInt(formFields.nib_flexibility_id)
+			);
+		});
+		const nibMaterials = [];
+
+		// Keep track of which choices appeared
+		const selectedNibMaterials = {};
+
+		for (let variant of variants) {
+			const nibMaterial = [
+				variant.nib_material_id,
+				variant.nibMaterial.nib_material
+			];
+
+			// Check if option is already added
+			if (!selectedNibMaterials[nibMaterial[0]]) {
+				nibMaterials.push(nibMaterial);
+				selectedNibMaterials[nibMaterial[0]] = nibMaterial[1];
+			}
+		}
+
+		return nibMaterials;
 	};
 
 	return (
