@@ -21,7 +21,6 @@ export default function Products() {
 
 	// States
 	const [query, setQuery] = useState({});
-	// const [products, setProducts] = useState([]);
 	const [searchOptions, setSearchOptions] = useState({});
 	const [contentLoaded, setContentLoaded] = useState(false);
 	const [costError, setCostError] = useState(false);
