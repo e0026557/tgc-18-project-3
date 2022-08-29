@@ -265,6 +265,7 @@ body {
 .product-quantity-info {
   font-weight: 500;
   font-size: 15px;
+  color: #FF0000;
 }
 
 .product-specification-header {
