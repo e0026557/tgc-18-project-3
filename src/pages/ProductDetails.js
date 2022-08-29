@@ -435,10 +435,10 @@ export default function ProductDetails(props) {
 					<React.Fragment>
 						{/* Product View (Desktop) */}
 						<div className='container pt-4'>
-							<div className='d-flex justify-content-center gap-5'>
+							<div className='row d-flex flex-column flex-lg-row justify-content-center gap-lg-5'>
 								{/* Product Image Section */}
-								<div className='d-flex justify-content-center col-5'>
-									<div className='variant-img-box p-5'>
+								<div className='d-flex justify-content-center col-lg-5'>
+									<div className='container-fluid variant-img-box p-lg-5'>
 										<img
 											className='variant-img'
 											src={variant.image_url}
@@ -447,7 +447,7 @@ export default function ProductDetails(props) {
 									</div>
 								</div>
 								{/* Product Details Section */}
-								<div className='d-flex flex-column justify-content-start col-5'>
+								<div className='d-flex flex-column justify-content-start col-lg-5'>
 									<h2 className='product-header pt-4'>
 										{product.brand.brand} {product.model}
 									</h2>

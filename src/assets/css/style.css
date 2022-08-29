@@ -251,8 +251,12 @@ body {
 }
 
 /* --- Product View --- */
+.variant-img-box {
+  width: 80vw;
+}
+
 .variant-img {
-  width: 50vh;
+  width: 100%;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid #bd9853;
@@ -356,5 +360,14 @@ body {
 
   .product-message {
     font-size: 2rem;
+  }
+
+  /* --- Product View --- */
+  .variant-img-box {
+    width: 100%;
+  }
+
+  .variant-img {
+    width: 100%;
   }
 }
