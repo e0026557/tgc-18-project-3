@@ -164,6 +164,15 @@ export default function UserProvider(props) {
 					toast.error('An occurred while adding to cart. Please try again');
 				}
 			}
+		},
+		getCart: async () => {
+			const response = await axios.get(BASE_API_URL + '/cart', {
+				headers: {
+					Authorization: `Bearer ${user.accessToken}`
+				}
+			});
+			const cart = response.data.data.cartItems;
+			return cart;
 		}
 	};
 
