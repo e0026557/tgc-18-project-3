@@ -1,29 +1,53 @@
 // *** DEPENDENCIES ***
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import CartItem from './CartItem';
+import Spinner from '../components/Spinner';
+import { toast } from 'react-toastify';
 
 // *** CONTEXTS ***
 import UserContext from '../contexts/UserContext';
-import { toast } from 'react-toastify';
-import Spinner from '../components/Spinner';
 
 export default function Navigation() {
 	// Consume user context
 	const userContext = useContext(UserContext);
 
 	// States
+	const [reload, setReload] = useState(false); // Triggered by cart item 
 	const [cartItems, setCartItems] = useState([]);
 	const [cartLoaded, setCartLoaded] = useState(false);
 	const [show, setShow] = useState(false); // For offcanvas
+
+	useEffect(() => {
+		(async () => {
+			if (reload) {
+				// Get cart (reload)
+				setCartLoaded(false); // Trigger spinner animation
+
+				// Refresh token
+				const valid = await userContext.refreshToken();
+
+				if (!valid) {
+					setShow(false); // Close cart offcanvas if open
+				}
+
+				const cartItems = await userContext.getCart();
+				setCartItems(cartItems);
+				setCartLoaded(true);
+				setReload(false);
+			}
+		})();
+	}, [reload]);
 
 	// Functions
 	const handleClose = () => setShow(false);
@@ -31,10 +55,34 @@ export default function Navigation() {
 
 	const getCartItems = async () => {
 		setCartLoaded(false);
+		// Refresh token
+		const valid = await userContext.refreshToken();
+		if (!valid) {
+			return;
+		}
 		handleShow();
+
 		const cartItems = await userContext.getCart();
 		setCartItems(cartItems);
 		setCartLoaded(true);
+	}
+
+	const renderCartItems = () => {
+		if (cartItems) {
+			return (
+				<ListGroup variant="flush">
+					{
+						cartItems.map(cartItem => {
+							return <CartItem key={cartItem.id} cartItem={cartItem} reloadCart={reloadCart} />
+						})
+					}
+				</ListGroup>
+			)
+		}
+	}
+
+	const reloadCart = () => {
+		setReload(true);
 	}
 
 	return (
@@ -89,7 +137,7 @@ export default function Navigation() {
 				</Container>
 			</Navbar>
 
-			{/* Offcanvas */}
+			{/* Offcanvas (Cart) */}
 			<Offcanvas show={show} onHide={handleClose} placement="end">
 				<Offcanvas.Header closeButton>
 					<Offcanvas.Title>
@@ -98,11 +146,16 @@ export default function Navigation() {
 				</Offcanvas.Header>
 				<Offcanvas.Body>
 					{
-						cartLoaded ? (cartItems ? cartItems.map( cartItem => {
-							return <li key={cartItem.id}>{cartItem.variant.fountainPen.brand.brand} {cartItem.variant.fountainPen.model}</li>
-						}) : '') : <Spinner />
+						cartLoaded ? renderCartItems() : <Spinner />
 					}
-						
+
+					{/* Checkout */}
+					{
+						cartLoaded ? (<div className='d-flex justify-content-center mt-4'>
+							<Button variant="primary">Checkout</Button>
+						</div>) : ''
+					}
+
 				</Offcanvas.Body>
 			</Offcanvas>
 		</React.Fragment>

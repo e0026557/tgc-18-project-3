@@ -28,6 +28,8 @@
 -- Tints:
 - #debd80
 
+- #dc3545 (red) *Note: Used for error etc
+
 */
 
 /* *** GENERAL *** */
@@ -103,7 +105,7 @@ body {
 
 /* --- Colors --- */
 .error {
-  color: red;
+  color: #dc3545;
 }
 
 /* --- Offcanvas --- */
@@ -129,6 +131,19 @@ body {
 
 .accordion-button::after {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d6ad60'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+/* --- List Group --- */
+.list-group {
+  border: 2px solid #bd9853 !important;
+}
+
+.list-group-item {
+  background-color: #f4ebd0;
+}
+
+.list-group-item:not(:last-child) {
+  border-bottom: 1px solid #bd9853 !important;
 }
 
 /* *** SMALL SCREEN SETTINGS *** */
@@ -265,7 +280,7 @@ body {
 .product-quantity-info {
   font-weight: 500;
   font-size: 15px;
-  color: #FF0000;
+  color: #dc3545;
 }
 
 .product-specification-header {
@@ -280,6 +295,37 @@ body {
 
 .quantity-input {
   width: fit-content;
+}
+
+/* --- Cart --- */
+.cart-item-img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #bd9853;
+}
+
+.cart-item-specification-list {
+  font-size: 12px;
+  list-style: none;
+  padding-left: 8px;
+}
+
+.btn-cart-item {
+  border: none;
+  border-radius: 100%;
+  transform: scale(0.65);
+}
+
+.input-cart-item-quantity-label {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.input-cart-item-quantity {
+  width: fit-content;
+  height: fit-content;
+  border-color: #bd9853
 }
 
 /* --- Login / Register --- */
