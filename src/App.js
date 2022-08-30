@@ -14,6 +14,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Orders from './pages/Orders';
 import Checkout from './pages/Checkout';
+import Success from './pages/Success';
+import Fail from './pages/Fail';
 import NotFound from './pages/NotFound';
 
 // *** PROVIDERS ***
@@ -59,6 +61,8 @@ function App() {
 
 						{/* Checkout Routes */}
 						<Route path='/checkout' element={<Checkout />} />
+						<Route path='/checkout/success' element={<Success />} />
+						<Route path='/checkout/fail' element={<Fail />} />
 
 						{/* 404 Not Found Page */}
 						<Route path='*' element={<NotFound />} />
