@@ -1,5 +1,5 @@
 // *** DEPENDENCIES ***
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -15,6 +15,21 @@ export default function UserProvider(props) {
 	const [redirectTo, setRedirectTo] = useState('');
 
 	const navigateTo = useNavigate();
+
+	useEffect(() => {
+		if (!user.accessToken || !user.refreshToken) {
+			// Retrieve stored tokens from local storage (if any)
+			const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+			const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+
+			if (accessToken && refreshToken) {
+				setUser({
+					accessToken,
+					refreshToken
+				});
+			}
+		}
+	}, []);
 
 	// User context
 	const userContext = {
@@ -67,9 +82,15 @@ export default function UserProvider(props) {
 			try {
 				const response = await axios.post(BASE_API_URL + '/accounts/login', userData);
 
+				const accessToken = response.data.data.accessToken;
+				const refreshToken = response.data.data.refreshToken;
+
+				localStorage.setItem('accessToken', JSON.stringify(accessToken));
+				localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
+
 				setUser({
-					accessToken: response.data.data.accessToken,
-					refreshToken: response.data.data.refreshToken
+					accessToken,
+					refreshToken
 				});
 
 				// Redirect to home page or intended route
@@ -104,6 +125,8 @@ export default function UserProvider(props) {
 
 				// Clear state
 				setUser({});
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');
 
 				toast.success('Logged out successfully');
 				navigateTo('/');
