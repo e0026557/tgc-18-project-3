@@ -16,7 +16,6 @@ import Spinner from '../components/Spinner';
 
 // *** CONTEXTS ***
 import UserContext from '../contexts/UserContext';
-import { toast } from 'react-toastify';
 
 export default function Navigation() {
 	// Consume user context
