@@ -169,6 +169,9 @@ export default function UserProvider(props) {
 				navigateTo('/login');
 			}
 			else {
+				// Refresh token
+				userContext.refreshToken();
+
 				try {
 					const response = await axios.post(BASE_API_URL + `/cart/${variantId}/add`, {
 						quantity: parseInt(quantity)
@@ -189,13 +192,21 @@ export default function UserProvider(props) {
 			}
 		},
 		getCart: async () => {
-			const response = await axios.get(BASE_API_URL + '/cart', {
-				headers: {
-					Authorization: `Bearer ${user.accessToken}`
-				}
-			});
-			const cart = response.data.data.cartItems;
-			return cart;
+			try {
+				// Refresh token
+				userContext.refreshToken();
+
+				const response = await axios.get(BASE_API_URL + '/cart', {
+					headers: {
+						Authorization: `Bearer ${user.accessToken}`
+					}
+				});
+				const cart = response.data.data.cartItems;
+				return cart;
+			} catch (error) {
+				console.log(error);
+				toast.error('An error occurred while getting cart. Please try again');
+			}
 		}
 	};
 
