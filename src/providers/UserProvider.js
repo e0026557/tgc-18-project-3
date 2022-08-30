@@ -11,25 +11,25 @@ const BASE_API_URL = 'https://inkstone-express.herokuapp.com/api';
 
 export default function UserProvider(props) {
 	// States
-	const [user, setUser] = useState({});
+	// const [user, setUser] = useState({});
 	const [redirectTo, setRedirectTo] = useState('');
 
 	const navigateTo = useNavigate();
 
-	useEffect(() => {
-		if (!user.accessToken || !user.refreshToken) {
-			// Retrieve stored tokens from local storage (if any)
-			const accessToken = JSON.parse(localStorage.getItem('accessToken'));
-			const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+	// useEffect(() => {
+	// 	if (!user.accessToken || !user.refreshToken) {
+	// 		// Retrieve stored tokens from local storage (if any)
+	// 		const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+	// 		const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
 
-			if (accessToken && refreshToken) {
-				setUser({
-					accessToken,
-					refreshToken
-				});
-			}
-		}
-	}, []);
+	// 		if (accessToken && refreshToken) {
+	// 			setUser({
+	// 				accessToken,
+	// 				refreshToken
+	// 			});
+	// 		}
+	// 	}
+	// }, []);
 
 	// User context
 	const userContext = {
@@ -50,7 +50,7 @@ export default function UserProvider(props) {
 			}
 		},
 		checkIfAuthenticated: () => {
-			if (user.accessToken && user.refreshToken) {
+			if (JSON.parse(localStorage.getItem('accessToken')) && JSON.parse(localStorage.getItem('refreshToken'))) {
 				return true;
 			}
 			return false;
@@ -88,10 +88,10 @@ export default function UserProvider(props) {
 				localStorage.setItem('accessToken', JSON.stringify(accessToken));
 				localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
 
-				setUser({
-					accessToken,
-					refreshToken
-				});
+				// setUser({
+				// 	accessToken,
+				// 	refreshToken
+				// });
 
 				// Redirect to home page or intended route
 				if (redirectTo) {
@@ -116,15 +116,15 @@ export default function UserProvider(props) {
 		logoutUser: async () => {
 			try {
 				await axios.post(BASE_API_URL + '/accounts/logout', {
-					refreshToken: user.refreshToken
+					refreshToken: JSON.parse(localStorage.getItem('refreshToken'))
 				}, {
 					headers: {
-						Authorization: `Bearer ${user.accessToken}`
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
 					}
 				});
 
 				// Clear state
-				setUser({});
+				// setUser({});
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 
@@ -139,20 +139,20 @@ export default function UserProvider(props) {
 			// Attempt to refresh token using current JWT and refresh tokens
 			try {
 				const response = await axios.post(BASE_API_URL + '/accounts/refresh', {
-					refreshToken: user.refreshToken
+					refreshToken: JSON.parse(localStorage.getItem('refreshToken'))
 				}, {
 					headers: {
-						Authorization: `Bearer ${user.accessToken}`
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
 					}
 				});
 
 				const accessToken = response.data.data.accessToken;
 				localStorage.setItem('accessToken', JSON.stringify(accessToken));
 
-				await setUser({
-					...user,
-					accessToken: accessToken
-				});
+				// await setUser({
+				// 	...user,
+				// 	accessToken: accessToken
+				// });
 				return true; // Indicate success
 			}
 			// If jwt token has expired or is invalid, redirect to login page
@@ -176,7 +176,7 @@ export default function UserProvider(props) {
 						quantity: parseInt(quantity)
 					}, {
 						headers: {
-							Authorization: `Bearer ${user.accessToken}`
+							Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
 						}
 					});
 
@@ -194,7 +194,7 @@ export default function UserProvider(props) {
 			try {
 				const response = await axios.get(BASE_API_URL + '/cart', {
 					headers: {
-						Authorization: `Bearer ${user.accessToken}`
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
 					}
 				});
 				const cart = response.data.data.cartItems;
@@ -211,7 +211,7 @@ export default function UserProvider(props) {
 					quantity: parseInt(quantity)
 				}, {
 					headers: {
-						Authorization: `Bearer ${user.accessToken}`
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
 					}
 				});
 
@@ -232,7 +232,7 @@ export default function UserProvider(props) {
 			try {
 				const response = await axios.delete(BASE_API_URL + `/cart/${variantId}/delete`, {
 					headers: {
-						Authorization: `Bearer ${user.accessToken}`
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
 					}
 				});
 
@@ -261,7 +261,7 @@ export default function UserProvider(props) {
 
 				const response = await axios.get(BASE_API_URL + '/checkout', {
 					headers: {
-						Authorization: `Bearer ${user.accessToken}`
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
 					}
 				});
 
