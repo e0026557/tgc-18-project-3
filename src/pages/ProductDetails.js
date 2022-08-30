@@ -119,7 +119,7 @@ export default function ProductDetails(props) {
 				if (
 					variant.color_id == formFields.color_id &&
 					variant.nib_flexibility_id ==
-						formFields.nib_flexibility_id &&
+					formFields.nib_flexibility_id &&
 					variant.nib_material_id == formFields.nib_material_id &&
 					variant.nib_shape_id == formFields.nib_shape_id &&
 					variant.nib_size_id == formFields.nib_size_id
@@ -153,13 +153,13 @@ export default function ProductDetails(props) {
 			let variants = product.variants.filter((variant) => {
 				return (
 					parseInt(variant.color_id) ===
-						parseInt(formFields.color_id) &&
+					parseInt(formFields.color_id) &&
 					parseInt(variant.nib_shape_id) ===
-						parseInt(formFields.nib_shape_id) &&
+					parseInt(formFields.nib_shape_id) &&
 					parseInt(variant.nib_size_id) ===
-						parseInt(formFields.nib_size_id) &&
+					parseInt(formFields.nib_size_id) &&
 					parseInt(variant.nib_flexibility_id) ===
-						parseInt(formFields.nib_flexibility_id)
+					parseInt(formFields.nib_flexibility_id)
 				);
 			});
 
@@ -180,11 +180,11 @@ export default function ProductDetails(props) {
 			variants = product.variants.filter((variant) => {
 				return (
 					parseInt(variant.color_id) ===
-						parseInt(formFields.color_id) &&
+					parseInt(formFields.color_id) &&
 					parseInt(variant.nib_shape_id) ===
-						parseInt(formFields.nib_shape_id) &&
+					parseInt(formFields.nib_shape_id) &&
 					parseInt(variant.nib_size_id) ===
-						parseInt(formFields.nib_size_id)
+					parseInt(formFields.nib_size_id)
 				);
 			});
 
@@ -205,9 +205,9 @@ export default function ProductDetails(props) {
 			variants = product.variants.filter((variant) => {
 				return (
 					parseInt(variant.color_id) ===
-						parseInt(formFields.color_id) &&
+					parseInt(formFields.color_id) &&
 					parseInt(variant.nib_shape_id) ===
-						parseInt(formFields.nib_shape_id)
+					parseInt(formFields.nib_shape_id)
 				);
 			});
 
@@ -264,6 +264,14 @@ export default function ProductDetails(props) {
 			[event.target.name]: event.target.value
 		});
 	};
+
+	const addToCart = async () => {
+		const valid = await userContext.refreshToken();
+		if (!valid) {
+			return;
+		}
+		await userContext.addToCart(variant.id, formFields.quantity);
+	}
 
 	const generateSelectOptions = (choices) => {
 		return choices.map((choice, index) => {
@@ -341,7 +349,7 @@ export default function ProductDetails(props) {
 			return (
 				parseInt(variant.color_id) === parseInt(formFields.color_id) &&
 				parseInt(variant.nib_shape_id) ===
-					parseInt(formFields.nib_shape_id)
+				parseInt(formFields.nib_shape_id)
 			);
 		});
 		const nibSizes = [];
@@ -368,9 +376,9 @@ export default function ProductDetails(props) {
 			return (
 				parseInt(variant.color_id) === parseInt(formFields.color_id) &&
 				parseInt(variant.nib_shape_id) ===
-					parseInt(formFields.nib_shape_id) &&
+				parseInt(formFields.nib_shape_id) &&
 				parseInt(variant.nib_size_id) ===
-					parseInt(formFields.nib_size_id)
+				parseInt(formFields.nib_size_id)
 			);
 		});
 		const nibFlexibilities = [];
@@ -400,11 +408,11 @@ export default function ProductDetails(props) {
 			return (
 				parseInt(variant.color_id) === parseInt(formFields.color_id) &&
 				parseInt(variant.nib_shape_id) ===
-					parseInt(formFields.nib_shape_id) &&
+				parseInt(formFields.nib_shape_id) &&
 				parseInt(variant.nib_size_id) ===
-					parseInt(formFields.nib_size_id) &&
+				parseInt(formFields.nib_size_id) &&
 				parseInt(variant.nib_flexibility_id) ===
-					parseInt(formFields.nib_flexibility_id)
+				parseInt(formFields.nib_flexibility_id)
 			);
 		});
 		const nibMaterials = [];
@@ -612,9 +620,7 @@ export default function ProductDetails(props) {
 											{variant.stock ? (
 												<Button
 													variant='primary'
-													onClick={() => {
-														userContext.addToCart(variant.id, formFields.quantity);
-													}}
+													onClick={addToCart}
 												>
 													Add to Cart
 												</Button>
