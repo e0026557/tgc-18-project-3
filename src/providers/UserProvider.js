@@ -147,7 +147,7 @@ export default function UserProvider(props) {
 				});
 
 				const accessToken = response.data.data.accessToken;
-				setUser({
+				await setUser({
 					...user,
 					accessToken: accessToken
 				});
@@ -245,6 +245,32 @@ export default function UserProvider(props) {
 				toast.error('An error occurred while deleting cart item. Please try again');
 				return false; // Indicate failure / error
 			}
+		},
+		checkout: async () => {
+			try {
+				// Get user cart
+				const cartItems = await userContext.getCart();
+
+				// Check that cart is not empty
+				if (!cartItems || !cartItems.length) {
+					toast.error('An error occurred while checking out. Please try again');
+					return false;
+				}
+
+				const response = await axios.get(BASE_API_URL + '/checkout', {
+					headers: {
+						Authorization: `Bearer ${user.accessToken}`
+					}
+				});
+
+				return response.data.data; // stripe session id and publishable key
+			} catch (error) {
+				console.log(error);
+				toast.error('An error occurred while checking out. Please try again');
+				return false;
+			}
+
+
 		}
 	};
 

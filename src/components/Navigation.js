@@ -1,7 +1,7 @@
 // *** DEPENDENCIES ***
 import React, { useEffect } from 'react';
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,10 +13,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import CartItem from './CartItem';
 import Spinner from '../components/Spinner';
-import { toast } from 'react-toastify';
 
 // *** CONTEXTS ***
 import UserContext from '../contexts/UserContext';
+import { toast } from 'react-toastify';
 
 export default function Navigation() {
 	// Consume user context
@@ -27,6 +27,8 @@ export default function Navigation() {
 	const [cartItems, setCartItems] = useState([]);
 	const [cartLoaded, setCartLoaded] = useState(false);
 	const [show, setShow] = useState(false); // For offcanvas
+
+	const navigateTo = useNavigate();
 
 	useEffect(() => {
 		(async () => {
@@ -83,6 +85,11 @@ export default function Navigation() {
 
 	const reloadCart = () => {
 		setReload(true);
+	}
+
+	const checkout = () => {
+		setShow(false); // Close cart offcanvas
+		navigateTo('/checkout')
 	}
 
 	return (
@@ -152,7 +159,7 @@ export default function Navigation() {
 					{/* Checkout */}
 					{
 						cartLoaded ? (<div className='d-flex justify-content-center mt-4'>
-							<Button variant="primary">Checkout</Button>
+							<Button variant="primary" onClick={checkout}>Checkout</Button>
 						</div>) : ''
 					}
 
