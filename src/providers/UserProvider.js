@@ -169,9 +169,6 @@ export default function UserProvider(props) {
 				navigateTo('/login');
 			}
 			else {
-				// Refresh token
-				userContext.refreshToken();
-
 				try {
 					const response = await axios.post(BASE_API_URL + `/cart/${variantId}/add`, {
 						quantity: parseInt(quantity)
@@ -193,9 +190,6 @@ export default function UserProvider(props) {
 		},
 		getCart: async () => {
 			try {
-				// Refresh token
-				userContext.refreshToken();
-
 				const response = await axios.get(BASE_API_URL + '/cart', {
 					headers: {
 						Authorization: `Bearer ${user.accessToken}`
@@ -206,6 +200,50 @@ export default function UserProvider(props) {
 			} catch (error) {
 				console.log(error);
 				toast.error('An error occurred while getting cart. Please try again');
+			}
+		},
+		updateCartItem: async (variantId, quantity) => {
+			// Attempt to update cart item
+			try {
+				const response = await axios.put(BASE_API_URL + `/cart/${variantId}/update`, {
+					quantity: parseInt(quantity)
+				}, {
+					headers: {
+						Authorization: `Bearer ${user.accessToken}`
+					}
+				});
+
+				const result = response.data.status;
+				if (result === 'success') {
+					toast.success('Cart item updated successfully');
+					return true;
+				}
+
+			} catch (error) {
+				console.log(error);
+				toast.error('An error occurred while updating cart item. Please try again');
+				return false; // Indicate failure / error
+			}
+		},
+		deleteCartItem: async (variantId) => {
+			// Attempt to delete cart item
+			try {
+				const response = await axios.delete(BASE_API_URL + `/cart/${variantId}/delete`, {
+					headers: {
+						Authorization: `Bearer ${user.accessToken}`
+					}
+				});
+
+				const result = response.data.status;
+				if (result === 'success') {
+					toast.success('Cart item removed successfully');
+					return true;
+				}
+
+			} catch (error) {
+				console.log(error);
+				toast.error('An error occurred while deleting cart item. Please try again');
+				return false; // Indicate failure / error
 			}
 		}
 	};
