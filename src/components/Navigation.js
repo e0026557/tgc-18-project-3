@@ -70,7 +70,7 @@ export default function Navigation() {
 	}
 
 	const renderCartItems = () => {
-		if (cartItems) {
+		if (cartItems.length) {
 			return (
 				<ListGroup variant="flush">
 					{
@@ -79,6 +79,13 @@ export default function Navigation() {
 						})
 					}
 				</ListGroup>
+			)
+		}
+		else {
+			return (
+				<div className='container mt-4'>
+					<h5>There are no items in your cart</h5>
+				</div>
 			)
 		}
 	}
@@ -158,7 +165,7 @@ export default function Navigation() {
 
 					{/* Checkout */}
 					{
-						cartLoaded ? (<div className='d-flex justify-content-center mt-4'>
+						cartLoaded && cartItems.length ? (<div className='d-flex justify-content-center mt-4'>
 							<Button variant="primary" onClick={checkout}>Checkout</Button>
 						</div>) : ''
 					}
