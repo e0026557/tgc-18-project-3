@@ -36,6 +36,19 @@ export default function CartItem(props) {
 	};
 
 	// Functions
+	const updateQuantity = (event) => {
+		if (
+			parseInt(event.target.value) >
+			parseInt(props.cartItem.variant.stock)
+		) {
+			setQuantity(props.cartItem.variant.stock);
+		} else if (parseInt(event.target.value) <= 0) {
+			setQuantity(1);
+		} else {
+			setQuantity(event.target.value);
+		}
+	};
+
 	const deleteCartItem = async () => {
 		// Refresh token
 		await userContext.refreshToken();
@@ -89,9 +102,7 @@ export default function CartItem(props) {
 									min={1}
 									max={props.cartItem.variant.stock}
 									value={quantity}
-									onChange={(event) => {
-										setQuantity(event.target.value);
-									}}
+									onChange={updateQuantity}
 								/>
 
 								{/* Update Cart Item Button */}

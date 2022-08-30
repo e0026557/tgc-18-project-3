@@ -258,6 +258,14 @@ export default function ProductDetails(props) {
 			});
 			return;
 		}
+		else if (event.target.name === 'quantity' &&
+			parseInt(event.target.value) <= 0) {
+			setFormFields({
+				...formFields,
+				[event.target.name]: 1
+			});
+			return;
+		}
 
 		setFormFields({
 			...formFields,
