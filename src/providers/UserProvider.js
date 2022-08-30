@@ -147,6 +147,8 @@ export default function UserProvider(props) {
 				});
 
 				const accessToken = response.data.data.accessToken;
+				localStorage.setItem('accessToken', JSON.stringify(accessToken));
+
 				await setUser({
 					...user,
 					accessToken: accessToken
@@ -156,7 +158,7 @@ export default function UserProvider(props) {
 			// If jwt token has expired or is invalid, redirect to login page
 			catch (error) {
 				console.log(error);
-				setUser({});
+				await userContext.logoutUser();
 				navigateTo('/login');
 				return false; // Indicate failure
 			}
