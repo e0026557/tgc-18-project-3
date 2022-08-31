@@ -1,6 +1,7 @@
 // *** DEPENDENCIES ***
 import React, { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 import { loadStripe } from '@stripe/stripe-js';
 
 // *** CONTEXTS ***
@@ -37,6 +38,7 @@ export default function Checkout() {
       <div className='container d-flex flex-column justify-content-center align-items-center adjust-margin-top pt-5'>
         <h3>Checking out cart</h3>
         <p>Redirecting ...</p>
+        <Spinner />
       </div>
     </React.Fragment>
   )
