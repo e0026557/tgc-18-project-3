@@ -117,10 +117,6 @@ export default function UserProvider(props) {
 			try {
 				await axios.post(BASE_API_URL + '/accounts/logout', {
 					refreshToken: JSON.parse(localStorage.getItem('refreshToken'))
-				}, {
-					headers: {
-						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
-					}
 				});
 
 				// Clear state
@@ -158,8 +154,13 @@ export default function UserProvider(props) {
 			// If jwt token has expired or is invalid, redirect to login page
 			catch (error) {
 				console.log(error);
-				await userContext.logoutUser();
+
+				// If user was logged in, log user out
+				if (JSON.parse(localStorage.getItem('refreshToken'))) {
+					await userContext.logoutUser();
+				}
 				navigateTo('/login');
+				toast.error('Session has expired. Please login');
 				return false; // Indicate failure
 			}
 		},
@@ -172,6 +173,9 @@ export default function UserProvider(props) {
 			}
 			else {
 				try {
+					// Attempt to refresh token
+					await userContext.refreshToken();
+
 					const response = await axios.post(BASE_API_URL + `/cart/${variantId}/add`, {
 						quantity: parseInt(quantity)
 					}, {
@@ -186,7 +190,18 @@ export default function UserProvider(props) {
 					}
 				} catch (error) {
 					console.log(error);
-					toast.error('An occurred while adding to cart. Please try again');
+
+					// If JWT token is invalid or expired (catching error of refresh token function)
+					if (error.response.data.status === 'fail') {
+						// If user was logged in, log user out
+						if (JSON.parse(localStorage.getItem('refreshToken'))) {
+							await userContext.logoutUser();
+						}
+						navigateTo('/login');
+					}
+					else {
+						toast.error('An occurred while adding to cart. Please try again');
+					}
 				}
 			}
 		},
