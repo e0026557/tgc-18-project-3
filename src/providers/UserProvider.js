@@ -271,8 +271,21 @@ export default function UserProvider(props) {
 				toast.error('An error occurred while checking out. Please try again');
 				return false;
 			}
+		},
+		getOrders: async () => {
+			try {
+				const response = await axios.get(BASE_API_URL + '/orders', {
+					headers: {
+						Authorization: `Bearer ${JSON.parse(localStorage.getItem('accessToken'))}`
+					}
+				});
 
-
+				const orders = response.data.data.orders;
+				return orders;
+			} catch (error) {
+				console.log(error);
+				toast.error('An error occurred while getting orders. Please try again');
+			}
 		}
 	};
 
