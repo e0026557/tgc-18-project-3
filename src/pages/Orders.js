@@ -114,7 +114,7 @@ export default function Orders(props) {
 							})
 						) : (
 							<tr>
-								<td className='text-center' colSpan={4}>
+								<td className='text-center' colSpan={6}>
 									No orders to display
 								</td>
 							</tr>
