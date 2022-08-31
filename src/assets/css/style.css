@@ -179,6 +179,10 @@ body {
   border-color: #d6ad60 !important
 }
 
+.dropdown-item.active {
+  background-color: #122620;
+}
+
 .dropdown-item {
   color: #d6ad60 !important;
   font-weight: 500;
