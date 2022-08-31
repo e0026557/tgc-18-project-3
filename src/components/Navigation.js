@@ -101,7 +101,7 @@ export default function Navigation() {
 	return (
 		<React.Fragment>
 
-			<Navbar bg='light' expand='lg' fixed='top' collapseOnSelect>
+			<Navbar bg='light' expand='lg' fixed='top' collapseOnSelect={true}>
 				<Container className='d-flex align-items-center'>
 					<Navbar.Brand className='logo' as={Link} to='/'>
 						InkStone
@@ -122,26 +122,26 @@ export default function Navigation() {
 								// If user is logged in
 								<Nav className='ms-auto'>
 									{/* Shopping cart */}
-									<Nav.Link onClick={getCartItems}>
+									<Nav.Link eventKey="1" onClick={getCartItems}>
 										Cart
 									</Nav.Link>
 									{/* Accounts */}
 									<NavDropdown
 										title="Account"
 									>
-										<NavDropdown.Item as={Link} to='/orders'>Orders</NavDropdown.Item>
+										<NavDropdown.Item eventKey="2" as={Link} to='/orders'>Orders</NavDropdown.Item>
 										<NavDropdown.Divider />
-										<NavDropdown.Item onClick={userContext.logoutUser}>
+										<NavDropdown.Item eventKey="3" onClick={userContext.logoutUser}>
 											Logout
 										</NavDropdown.Item>
 									</NavDropdown>
 								</Nav>) : (
 								// If user is not logged in
 								<Nav className='ms-auto'>
-									<Nav.Link as={Link} to='/login'>
+									<Nav.Link eventKey="4" as={Link} to='/login'>
 										Login
 									</Nav.Link>
-									<Nav.Link as={Link} to='/register'>
+									<Nav.Link eventKey="5" as={Link} to='/register'>
 										Register
 									</Nav.Link>
 								</Nav>)
