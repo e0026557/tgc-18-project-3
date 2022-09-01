@@ -170,6 +170,7 @@ export default function CartItem(props) {
 												.nib_material
 										}{' '}
 									</li>
+									<li>Price: ${(props.cartItem.variant.cost / 100).toFixed(2)}</li>
 									<li>Qty: {props.cartItem.quantity}</li>
 								</ul>
 							</div>
