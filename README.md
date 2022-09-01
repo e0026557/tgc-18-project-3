@@ -119,7 +119,6 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 | [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) | Used for styling of web application |
 | [Font Awesome](https://fontawesome.com/) | Used for icons displayed on web application |
 | [Stripe](https://stripe.com/en-sg) | Payment gateway used in web application |
-| []() | |
 
 
 ---
@@ -174,29 +173,16 @@ STRIPE_ENDPOINT_SECRET=
 
 ## Credits and Acknowledgement
 
-### Logo :
+- Fonts are taken from [Google Fonts](https://fonts.google.com/)
 
+- Icons are taken from [Font Awesome](https://fontawesome.com/)
 
-### Fonts :
+- CSS spinner is adapted from [SpinKit](https://tobiasahlin.com/spinkit/)
 
--   [Google Fonts](https://fonts.google.com/) - Used for fonts displayed in website
+- Box-shadow styling is taken from [CSS Scan](https://getcssscan.com/css-box-shadow-examples)
 
-### Icons :
+- Product images are taken from [Faber-Castell](https://www.faber-castell.com.sg/products/fine-writing)
 
--   [Font Awesome](https://fontawesome.com/) - Used for icons displayed in website
+- Code for Stripe checkout is adapted from [Jerrysuper123](https://github.com/Jerrysuper123/artisanBread)
 
-### CSS Spinner :
-
--   [SpinKit](https://tobiasahlin.com/spinkit/) - Adapted CSS spinner for use in website
-
-### Box Shadows:
-
--   [CSS Scan](https://getcssscan.com/css-box-shadow-examples) - For box-shadows used to style website
-
-### Images :
-
--   [Unsplash](https://unsplash.com/) - For coffee images used in website
-
-### Screenshot :
-
--   [CreateMockup.com](https://www.createmockup.com/generate/) - Used to generate responsive website mockup for README file
+- Responsive website mockup is created using [CreateMockup.com](https://www.createmockup.com/generate/)
