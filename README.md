@@ -33,6 +33,7 @@ To create an e-commerce web application to sell fountain pens exclusively. The o
 
 | User Stories | Accceptance Criteria |
 | ------------ | -------------------- |
+| As a fountain pen enthusiast, I would like to get a LAMY Vista fountain pen | Fountain pens need to be searchable by brand and model |
 | As a fountain pen enthusiast, I would like to get a fountain pen that supports the use of converters filling mechanism | Fountain pens need to be categorised by the various filling mechanisms |
 | As a fountain pen hobbyist, I would like to get a fountain pen that has a flexible nib for writing cursive | Fountain pens need to be categorised by nib flexibility |
 | As a fountain pen hobbyist, I would like to get a fountain pen that has a broad nib size | Fountain pens need to be categorised by nib size |
