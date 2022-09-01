@@ -17,7 +17,7 @@ Link to demo : [InkStone](https://inkstone-react.netlify.app/)
 
 ## Summary
 
-InkStone is an e-commerce web application for fountain pens. This e-commerce web application serves as a platform for customers to browse and purchase fountain pens based on fountain pen specifications.
+InkStone is an e-commerce web application for fountain pens. This e-commerce web application is designed with fountain pen enthusiasts in mind, with features such as searching by fountain specifications. 
 
 ---
 
@@ -27,10 +27,17 @@ InkStone is an e-commerce web application for fountain pens. This e-commerce web
 
 #### Organisational Goals
 
+To create an e-commerce web application to sell fountain pens exclusively. The organisation aims to serve as a platform where customers can browse and purchase fountain pens exclusively.
+
 #### User Goals
 
 | User Stories | Accceptance Criteria |
 | ------------ | -------------------- |
+| As a fountain pen enthusiast, I would like to get a fountain pen that supports the use of converters filling mechanism | Fountain pens need to be categorised by the various filling mechanisms |
+| As a fountain pen hobbyist, I would like to get a fountain pen that has a flexible nib for writing cursive | Fountain pens need to be categorised by nib flexibility |
+| As a fountain pen hobbyist, I would like to get a fountain pen that has a broad nib size | Fountain pens need to be categorised by nib size |
+| As a fountain pen hobbyist, I would like to get a fountain pen that has an italic nib | Fountain pens need to be categorised by nib shape |
+| As a fountain pen hobbyist who is looking to get another fountain pen, I would like to find one that fits my budget | Fountain pens need to be searchable by cost range |
 
 ### Structure and Skeleton
 
