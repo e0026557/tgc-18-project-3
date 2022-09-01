@@ -124,13 +124,10 @@ export default function UserProvider(props) {
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 
-				if (option === 'expire') {
-					toast.error('Session has expired. Please login');
-				}
-				else {
+				if (option !== 'expire') {
 					toast.success('Logged out successfully');
+					navigateTo('/');
 				}
-				navigateTo('/');
 			} catch (error) {
 				console.log(error);
 				toast.error('An error occurred while logging out. Please try again');
@@ -162,7 +159,7 @@ export default function UserProvider(props) {
 
 				// If user was logged in, log user out
 				if (JSON.parse(localStorage.getItem('refreshToken'))) {
-					await userContext.logoutUser();
+					await userContext.logoutUser('expire');
 				}
 				navigateTo('/login');
 				toast.error('Session has expired. Please login');
@@ -200,7 +197,7 @@ export default function UserProvider(props) {
 					if (error.response.data.status === 'fail' && (error.response.data.data.error === 'Refresh token has been blacklisted' || error.response.data.data.error === 'Invalid refresh token' || error.response.data.data.error === 'No refresh token found')) {
 						// If user was logged in, log user out
 						if (JSON.parse(localStorage.getItem('refreshToken'))) {
-							await userContext.logoutUser();
+							await userContext.logoutUser('expire');
 						}
 						navigateTo('/login');
 					}
