@@ -87,41 +87,40 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 
 ### Backend
 
-1. Javascript
+| Technology | Description |
+| ----------- | ----------- |
+| [Express](https://expressjs.com/) | Web application framework used |
+| [Bookshelf.js](https://bookshelfjs.org/index.html) | JavaScript ORM used for querying SQL databases |
+| [knex](https://knexjs.org/) | Query builder for PostgreSQL, MySQL, CockroachDB, SQL Server, SQLite3 and Oracle on node.js |
+| [db-migrate](https://db-migrate.readthedocs.io/en/latest/) | Database migration framework used |
+| [Axios](https://axios-http.com/docs/intro) | HTTP Client |
+| [Caolan Forms](https://github.com/caolan/forms) | Create and validate forms |
+| [CORS](https://www.npmjs.com/package/cors) | Middleware to enable Cross-Origin Resource Sharing (CORS) |
+| [csurf](https://www.npmjs.com/package/csurf) | CSRF protection middleware |
+| [dotenv](https://www.npmjs.com/package/dotenv) | To allow loading of environment variables from .env file |
+| [express-session](https://www.npmjs.com/package/express-session) | Session management middleware |
+| [connect-flash](https://www.npmjs.com/package/connect-flash) | Middleware to enable Flash messages |
+| [express-flash](https://www.npmjs.com/package/express-flash) | Extension of connect-flash to enable definition and rendering of flash message without redirecting request  |
+| [JSON Web Token](https://jwt.io/) | Authentication framework with Frontend |
+| [Handlebars](https://handlebarsjs.com/) | Used to generate HTML templates for admin panel |
+| [handlebars-helpers](https://github.com/helpers/handlebars-helpers) | Handlebars helpers |
+| [wax-on](https://www.npmjs.com/package/wax-on) | Add support to Handlebars for template inheritance with `block` and `extends` helpers |
+| [Cloudinary](https://cloudinary.com/) | Image hosting service used for upload and storage of images |
 
-2. [Express](https://expressjs.com/)
-
-3. [cors](https://www.npmjs.com/package/cors)
-
-    - Middleware to enable Cross-Origin Resource Sharing (CORS)
-
-4. [dotenv](https://www.npmjs.com/package/dotenv)
-    - To allow loading of environment variables from .env file
 
 ### Frontend
 
-1. HTML
+| Technology | Description |
+| ----------- | ----------- |
+| [React](https://reactjs.org/) | Frontend framework |
+| [React Router DOM](https://v5.reactrouter.com/web/guides/quick-start) | Handle routing in React web application |
+| [Axios](https://axios-http.com/docs/intro) | HTTP Client |
+| [React Bootstrap](https://react-bootstrap.github.io/) | BootStrap for React application |
+| [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) | Used for styling of web application |
+| [Font Awesome](https://fontawesome.com/) | Used for icons displayed on web application |
+| [Stripe](https://stripe.com/en-sg) | Payment gateway used in web application |
+| []() | |
 
-2. CSS
-
-3. Javascript
-
-4. [React](https://reactjs.org/)
-
-5. [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-
-    - Used for styling website
-
-6. [React Bootstrap](https://react-bootstrap.github.io/)
-
-    - Used for styling website
-
-7. [Axios](https://github.com/axios/axios)
-
-    - Used to communicate with Express server to create, read, update and delete data in database
-
-8. [Font Awesome](https://fontawesome.com/)
-    - Used for icons displayed in website
 
 ---
 
@@ -144,13 +143,39 @@ For the detailed deployment steps, you can refer to the blog post on Netlify [he
 The Express server is hosted using [Heroku](https://www.heroku.com/), deployed directly from the main branch of the Github repository [here]().
 For the detailed deployment steps, you can refer to the documentation on Heroku [here](https://devcenter.heroku.com/articles/git#deploy-your-code).
 
+The Express server makes use of the following environment variables:
+
+```
+SESSION_SECRET=
+
+DB_DRIVER=
+DB_USER=
+DB_PASSWORD=
+DB_DATABASE=
+DB_HOST=
+
+CLOUDINARY_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+CLOUDINARY_UPLOAD_PRESET=
+
+TOKEN_SECRET=
+REFRESH_TOKEN_SECRET=
+
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+
+STRIPE_SUCCESS_URL=
+STRIPE_CANCEL_URL=
+STRIPE_ENDPOINT_SECRET=
+```
+
 ---
 
 ## Credits and Acknowledgement
 
 ### Logo :
 
--   [Adobe Express Logo Maker](https://www.adobe.com/express/create/logo) - Used to generate brand logo for website
 
 ### Fonts :
 
