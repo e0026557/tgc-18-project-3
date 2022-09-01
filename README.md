@@ -56,8 +56,10 @@ An Express server is then set up and deployed to [Heroku](https://www.heroku.com
 
 #### Sitemap
 
+The sitemap for InkStone Express (admin panel) is as follows:
 ![InkStone Express Sitemap](readme/admin-sitemap.png)
 
+The sitemap for InkStone React (e-commerce frontend) is as follows:
 ![InkStone React Sitemap](readme/react-sitemap.png)
 
 #### Wireframes
