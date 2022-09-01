@@ -113,7 +113,7 @@ export default function UserProvider(props) {
 				}
 			}
 		},
-		logoutUser: async () => {
+		logoutUser: async (option = '') => {
 			try {
 				await axios.post(BASE_API_URL + '/accounts/logout', {
 					refreshToken: JSON.parse(localStorage.getItem('refreshToken'))
@@ -124,7 +124,12 @@ export default function UserProvider(props) {
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 
-				toast.success('Logged out successfully');
+				if (option === 'expire') {
+					toast.error('Session has expired. Please login');
+				}
+				else {
+					toast.success('Logged out successfully');
+				}
 				navigateTo('/');
 			} catch (error) {
 				console.log(error);
@@ -192,7 +197,7 @@ export default function UserProvider(props) {
 					console.log(error);
 
 					// If JWT token is invalid or expired (catching error of refresh token function)
-					if (error.response.data.status === 'fail') {
+					if (error.response.data.status === 'fail' && (error.response.data.data.error === 'Refresh token has been blacklisted' || error.response.data.data.error === 'Invalid refresh token' || error.response.data.data.error === 'No refresh token found')) {
 						// If user was logged in, log user out
 						if (JSON.parse(localStorage.getItem('refreshToken'))) {
 							await userContext.logoutUser();
