@@ -84,8 +84,19 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 
 ## Features
 
+### Backend
+
 | Features | Description |
 | -------- | ----------- |
+| Login and Registration of admin / staff | Only admin /staff can access the admin panel via their account |
+| Management of products and variants | Search for products and perform create, update, and delete operations on products and variants | 
+| Management of orders | Search for orders and perform update operations on orders |
+
+### Frontend
+
+| Features | Description |
+| -------- | ----------- |
+
 
 ---
 
