@@ -111,13 +111,15 @@ export default function Products() {
 	};
 
 	const generateSelectOptions = (choices) => {
-		return choices.map((choice, index) => {
-			return (
-				<option key={index} value={choice[0]}>
-					{choice[1]}
-				</option>
-			);
-		});
+		if (choices) {
+			return choices.map((choice, index) => {
+				return (
+					<option key={index} value={choice[0]}>
+						{choice[1]}
+					</option>
+				);
+			});
+		}
 	};
 
 	const handleClose = () => setShow(false);
