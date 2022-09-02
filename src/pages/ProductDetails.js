@@ -117,12 +117,12 @@ export default function ProductDetails(props) {
 			// Check if there is any variant based on the current selected specifications
 			const variants = product.variants.filter((variant) => {
 				if (
-					variant.color_id == formFields.color_id &&
-					variant.nib_flexibility_id ==
-					formFields.nib_flexibility_id &&
-					variant.nib_material_id == formFields.nib_material_id &&
-					variant.nib_shape_id == formFields.nib_shape_id &&
-					variant.nib_size_id == formFields.nib_size_id
+					parseInt(variant.color_id) === parseInt(formFields.color_id) &&
+					parseInt(variant.nib_flexibility_id) ===
+					parseInt(formFields.nib_flexibility_id) &&
+					parseInt(variant.nib_material_id) === parseInt(formFields.nib_material_id) &&
+					parseInt(variant.nib_shape_id) === parseInt(formFields.nib_shape_id) &&
+					parseInt(variant.nib_size_id) === parseInt(formFields.nib_size_id)
 				) {
 					return true;
 				}
