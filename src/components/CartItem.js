@@ -9,6 +9,7 @@ import { faPen, faTrashCan, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // *** CONTEXTS ***
 import UserContext from '../contexts/UserContext';
+import { toast } from 'react-toastify';
 
 export default function CartItem(props) {
 	const variantId = props.cartItem.variant_id;
@@ -62,6 +63,12 @@ export default function CartItem(props) {
 	};
 
 	const updateCartItem = async () => {
+		// Ensure that quantity field is not undefined or 0
+		if (!parseInt(quantity)) {
+			toast.error('Please enter quantity');
+			return;
+		}
+
 		// Refresh token
 		await userContext.refreshToken();
 
