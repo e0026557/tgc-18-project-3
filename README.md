@@ -110,6 +110,11 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 
 ## Limitations and Future Implementations
 
+| Limitations | Future Implementations |
+| -------- | ----------- |
+| For the admin panel, staff can register an account to access the admin panel, which does not reflect the industry practice | Implement the feature for the admin to create new staff accounts instead of having staff to create their own account |
+| All products are currently loaded in the React frontend from the start, which can affect the performance of the web application | Implement a pagination feature in the API route for retrieving products | 
+
 ---
 
 ## Technologies Used
