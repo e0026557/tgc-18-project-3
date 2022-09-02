@@ -88,7 +88,7 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 
 | Features | Description |
 | -------- | ----------- |
-| Login and Registration of admin / staff | Only admin /staff can access the admin panel via their account |
+| Login, Logout and Registration of admin / staff | Only admin /staff can access the admin panel via their account |
 | Management of products and variants | Search for products and perform create, update, and delete operations on products and variants | 
 | Management of orders | Search for orders and perform update operations on orders |
 
@@ -96,7 +96,15 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 
 | Features | Description |
 | -------- | ----------- |
+| Login, Logout and Registration of customer | Customers can register for an account using a unique username, login and logout of their accounts |
+| Search for products | Customers can search for products by product specifications |
+| Variant selection | The variant selection feature in the product details page reflects the possible configurations of a particular specification available for selection given the currently selected variant. The algorithm works by searching for possible configuration options in the following order: Color, Nib Shape, Nib Size, Nib Flexibility, and Nib Material. If the currently selected variant does not have the specified color or nib specifications, the next closest matched variant (based on the number of matched specifications) will be rendered instead. [^1] |
+| Cart management | Allow logged-in customers to add, update or delete cart items from their carts |
+| Cart checkout | Allow logged-in customers to checkout their cart via Stripe |
+| View orders | Customers can view all their past orders and their status |
 
+
+[^1]: For example: The product 'Pilot Metropolitan' has 3 color variants (blue, black, and silver). The black variant has 2 nib shapes available (round and italic/stub). For 'Round' nib shape, there are 2 available nib sizes (fine and medium), but for the 'Italic/Stub' nib shape, there is only medium nib size available. If the user has currently selected "black", "round", "fine" for the first 3 specifications, on selecting the 'Italic/Stub' option for the nib shape, the possible options for nib sizes will be changed to reflect only 'medium' instead of 'fine' and 'medium'.
 
 ---
 
