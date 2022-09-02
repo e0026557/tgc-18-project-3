@@ -64,7 +64,8 @@ The sitemap for InkStone React (e-commerce frontend) is as follows:
 
 #### Wireframes
 
-[InkStone React Wireframes](readme/react-wireframes.pdf)
+[InkStone React Wireframes](readme/react-wireframes.pdf)  
+
 [InkStone Express Wireframes](readme/express-wireframes.pdf)
 
 ### Design Decisions
