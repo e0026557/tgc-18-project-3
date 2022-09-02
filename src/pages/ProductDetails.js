@@ -473,9 +473,18 @@ export default function ProductDetails(props) {
 									</h4>
 
 									{/*  Render quantity info when low on stock */}
-									{variant.stock <= 30 ? (
+									{/* When stock is less than 30 */}
+									{variant.stock > 0 && variant.stock <= 30 ? (
 										<span className='product-quantity-info'>
 											Only {variant.stock} left
+										</span>
+									) : (
+										''
+									)}
+									{/* When there is no stock */}
+									{variant.stock === 0 ? (
+										<span className='product-quantity-info'>
+											Out of stock
 										</span>
 									) : (
 										''
