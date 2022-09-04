@@ -468,24 +468,6 @@ export default function ProductDetails(props) {
 										${(variant.cost / 100).toFixed(2)}
 									</h4>
 
-									{/*  Render quantity info when low on stock */}
-									{/* When stock is less than 30 */}
-									{variant.stock > 0 && variant.stock <= 30 ? (
-										<span className='product-quantity-info'>
-											Only {variant.stock} left
-										</span>
-									) : (
-										''
-									)}
-									{/* When there is no stock */}
-									{variant.stock === 0 ? (
-										<span className='product-quantity-info'>
-											Out of stock
-										</span>
-									) : (
-										''
-									)}
-
 									{/* Product Details */}
 									<Accordion
 										defaultActiveKey={['0']}
@@ -627,6 +609,23 @@ export default function ProductDetails(props) {
 												onChange={updateFormFields}
 											/>
 										</Form.Group>
+										{/*  Render quantity info when low on stock */}
+										{/* When stock is less than 30 */}
+										{variant.stock > 0 && variant.stock <= 30 ? (
+											<span className='product-quantity-info'>
+												Only {variant.stock} left
+											</span>
+										) : (
+											''
+										)}
+										{/* When there is no stock */}
+										{variant.stock === 0 ? (
+											<span className='product-quantity-info'>
+												Out of stock
+											</span>
+										) : (
+											''
+										)}
 
 										{/* Add to cart button */}
 										<div className='d-flex justify-content-center mt-4'>
