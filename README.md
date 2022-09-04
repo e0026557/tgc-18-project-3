@@ -17,7 +17,7 @@ Link to demo : [InkStone](https://inkstone-react.netlify.app/)
 
 ## Summary
 
-InkStone is an e-commerce web application for fountain pens. This e-commerce web application is designed with fountain pen enthusiasts in mind, with features such as searching by fountain specifications. 
+InkStone is an e-commerce web application for fountain pens. As a fountain pen user, customers who are shopping for fountain pens would like to be able to browse for pens based on the filling mechanism and type of nib. This e-commerce web application is designed with fountain pen enthusiasts in mind, with features such as searching by fountain specifications. 
 
 ---
 
@@ -27,7 +27,7 @@ InkStone is an e-commerce web application for fountain pens. This e-commerce web
 
 #### Organisational Goals
 
-To create an e-commerce web application to sell fountain pens exclusively. The organisation aims to serve as a platform where customers can browse and purchase fountain pens exclusively.
+To create an e-commerce web application to sell fountain pens exclusively. The organisation aims to serve as a go-to platform where customers can browse and purchase fountain pens based on their needs and preferences.
 
 #### User Goals
 
@@ -56,10 +56,10 @@ An Express server is then set up and deployed to [Heroku](https://www.heroku.com
 
 #### Sitemap
 
-The sitemap for InkStone Express (admin panel) is as follows:
+The sitemap for InkStone Express (admin panel) is as follow:
 ![InkStone Express Sitemap](readme/admin-sitemap.png)
 
-The sitemap for InkStone React (e-commerce frontend) is as follows:
+The sitemap for InkStone React (e-commerce frontend) is as follow:
 ![InkStone React Sitemap](readme/react-sitemap.png)
 
 #### Wireframes
@@ -90,7 +90,7 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 
 | Features | Description |
 | -------- | ----------- |
-| Login, Logout and Registration of admin / staff | Only admin /staff can access the admin panel via their account |
+| Login, Logout and Registration of admin / staff | Only admin /staff can access the admin panel via their accounts |
 | Management of products and variants | Search for products and perform create, update, and delete operations on products and variants | 
 | Management of orders | Search for orders and perform update operations on orders |
 
@@ -100,7 +100,7 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 | -------- | ----------- |
 | Login, Logout and Registration of customer | Customers can register for an account using a unique username, login and logout of their accounts |
 | Search for products | Customers can search for products by product specifications |
-| Variant selection | The variant selection feature in the product details page reflects the possible configurations of a particular specification available for selection given the currently selected variant. The algorithm works by searching for possible configuration options in the following order: Color, Nib Shape, Nib Size, Nib Flexibility, and Nib Material. If the currently selected variant does not have the specified color or nib specifications, the next closest matched variant (based on the number of matched specifications) will be rendered instead. [^1] |
+| Variant selection | The variant selection feature in the product details page reflects the possible configurations of a particular specification that are available for selection given the currently selected variant. The algorithm works by searching for possible configuration options in the following order: Color, Nib Shape, Nib Size, Nib Flexibility, and Nib Material. If the currently selected variant does not have the specified color or nib specifications, the next closest matched variant (based on the number of matched specifications) will be rendered instead. [^1] |
 | Cart management | Allow logged-in customers to add, update or delete cart items from their carts |
 | Cart checkout | Allow logged-in customers to checkout their cart via Stripe |
 | View orders | Customers can view all their past orders and their status |
@@ -114,8 +114,8 @@ The color scheme chosen revolves around a dark-green primary color and gold acce
 
 | Limitations | Future Implementations |
 | -------- | ----------- |
-| For the admin panel, staff can register an account to access the admin panel, which does not reflect the industry practice | Implement the feature for the admin to create new staff accounts instead of having staff to create their own account |
-| All products are currently loaded in the React frontend from the start, which can affect the performance of the web application | Implement a pagination feature in the API route for retrieving products | 
+| For the admin panel, staff can register an account to access the admin panel, which does not reflect the industry practice where staff are usually assigned an account | Implement the feature for the admin to create new staff accounts instead of having staff to create their own account |
+| All products are currently loaded in the React frontend from the start, which can affect the performance of the web application | Implement pagination feature in the API route for retrieving products | 
 
 ---
 
