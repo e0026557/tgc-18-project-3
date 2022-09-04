@@ -228,32 +228,6 @@ export default function Products() {
 											)}
 										</Form.Select>
 									</Form.Group>
-									{/* Cap Type
-									<Form.Group className='mb-3'>
-										<Form.Label>Cap Type</Form.Label>
-										<Form.Select
-											name='cap_type_id'
-											value={formFields.cap_type_id}
-											onChange={updateFormFields}
-										>
-											{generateSelectOptions(
-												searchOptions.capTypes
-											)}
-										</Form.Select>
-									</Form.Group> */}
-									{/* Property
-									<Form.Group className='mb-3'>
-										<Form.Label>Property</Form.Label>
-										<Form.Select
-											name='properties'
-											value={formFields.properties}
-											onChange={updateFormFields}
-										>
-											{generateSelectOptions(
-												searchOptions.properties
-											)}
-										</Form.Select>
-									</Form.Group> */}
 									{/* Nib Size */}
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Nib Size</Form.Label>
@@ -308,19 +282,6 @@ export default function Products() {
 											)}
 										</Form.Select>
 									</Form.Group>
-									{/* Color
-									<Form.Group className='mb-3'>
-										<Form.Label>Color</Form.Label>
-										<Form.Select
-											name='color_id'
-											value={formFields.color_id}
-											onChange={updateFormFields}
-										>
-											{generateSelectOptions(
-												searchOptions.colors
-											)}
-										</Form.Select>
-									</Form.Group> */}
 									{/* Min Cost */}
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Min Cost</Form.Label>
@@ -429,32 +390,6 @@ export default function Products() {
 											)}
 										</Form.Select>
 									</Form.Group>
-									{/* Cap Type
-									<Form.Group className='mb-3'>
-										<Form.Label>Cap Type</Form.Label>
-										<Form.Select
-											name='cap_type_id'
-											value={formFields.cap_type_id}
-											onChange={updateFormFields}
-										>
-											{generateSelectOptions(
-												searchOptions.capTypes
-											)}
-										</Form.Select>
-									</Form.Group> */}
-									{/* Property
-									<Form.Group className='mb-3'>
-										<Form.Label>Property</Form.Label>
-										<Form.Select
-											name='properties'
-											value={formFields.properties}
-											onChange={updateFormFields}
-										>
-											{generateSelectOptions(
-												searchOptions.properties
-											)}
-										</Form.Select>
-									</Form.Group> */}
 									{/* Nib Size */}
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Nib Size</Form.Label>
@@ -509,19 +444,6 @@ export default function Products() {
 											)}
 										</Form.Select>
 									</Form.Group>
-									{/* Color
-									<Form.Group className='mb-3'>
-										<Form.Label>Color</Form.Label>
-										<Form.Select
-											name='color_id'
-											value={formFields.color_id}
-											onChange={updateFormFields}
-										>
-											{generateSelectOptions(
-												searchOptions.colors
-											)}
-										</Form.Select>
-									</Form.Group> */}
 									{/* Min Cost */}
 									<Form.Group className='col-6 mb-3'>
 										<Form.Label>Min Cost</Form.Label>

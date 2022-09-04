@@ -6,10 +6,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrashCan, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 // *** CONTEXTS ***
 import UserContext from '../contexts/UserContext';
-import { toast } from 'react-toastify';
 
 export default function CartItem(props) {
 	const variantId = props.cartItem.variant_id;

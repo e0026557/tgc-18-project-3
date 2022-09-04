@@ -274,10 +274,6 @@ export default function ProductDetails(props) {
 	};
 
 	const addToCart = async () => {
-		// const valid = await userContext.refreshToken();
-		// if (!valid) {
-		// 	return;
-		// }
 		await userContext.addToCart(variant.id, formFields.quantity);
 	}
 

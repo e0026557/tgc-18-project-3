@@ -1,11 +1,11 @@
 // *** DEPENDENCIES ***
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 // *** CONTEXTS ***
 import UserContext from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
 
 const BASE_API_URL = 'https://inkstone-express.herokuapp.com/api';
 
@@ -15,21 +15,6 @@ export default function UserProvider(props) {
 	const [redirectTo, setRedirectTo] = useState('');
 
 	const navigateTo = useNavigate();
-
-	// useEffect(() => {
-	// 	if (!user.accessToken || !user.refreshToken) {
-	// 		// Retrieve stored tokens from local storage (if any)
-	// 		const accessToken = JSON.parse(localStorage.getItem('accessToken'));
-	// 		const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
-
-	// 		if (accessToken && refreshToken) {
-	// 			setUser({
-	// 				accessToken,
-	// 				refreshToken
-	// 			});
-	// 		}
-	// 	}
-	// }, []);
 
 	// User context
 	const userContext = {
@@ -88,11 +73,6 @@ export default function UserProvider(props) {
 				localStorage.setItem('accessToken', JSON.stringify(accessToken));
 				localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
 
-				// setUser({
-				// 	accessToken,
-				// 	refreshToken
-				// });
-
 				// Redirect to home page or intended route
 				if (redirectTo) {
 					navigateTo(redirectTo);
@@ -120,7 +100,6 @@ export default function UserProvider(props) {
 				});
 
 				// Clear state
-				// setUser({});
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 
@@ -147,10 +126,6 @@ export default function UserProvider(props) {
 				const accessToken = response.data.data.accessToken;
 				localStorage.setItem('accessToken', JSON.stringify(accessToken));
 
-				// await setUser({
-				// 	...user,
-				// 	accessToken: accessToken
-				// });
 				return true; // Indicate success
 			}
 			// If jwt token has expired or is invalid, redirect to login page
