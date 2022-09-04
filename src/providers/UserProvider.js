@@ -141,10 +141,10 @@ export default function UserProvider(props) {
 				return false; // Indicate failure
 			}
 		},
-		addToCart: async (variantId, quantity) => {
+		addToCart: async (productId, variantId, quantity) => {
 			// Check that user is logged in
 			if (!userContext.checkIfAuthenticated()) {
-				setRedirectTo(`/products/${variantId}/view`);
+				setRedirectTo(`/products/${productId}/view`);
 				toast.error('You must be logged in first');
 				navigateTo('/login');
 			}

@@ -274,7 +274,7 @@ export default function ProductDetails(props) {
 	};
 
 	const addToCart = async () => {
-		await userContext.addToCart(variant.id, formFields.quantity);
+		await userContext.addToCart(productId, variant.id, formFields.quantity);
 	}
 
 	const generateSelectOptions = (choices) => {
