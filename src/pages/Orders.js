@@ -52,9 +52,9 @@ export default function Orders(props) {
 									<tr key={order.id}>
 										<td>{order.id}</td>
 										<td>
-											{new Date(
+											{order.order_date ? new Date(
 												order.order_date.slice(0, -1)
-											).toDateString()}
+											).toDateString() : ''}
 										</td>
 										<td>
 											$
@@ -80,19 +80,19 @@ export default function Orders(props) {
 										</td>
 										<td>
 											{order.orderStatus.order_status ===
-											'Delivered' ? (
+												'Delivered' ? (
 												<React.Fragment>
 													{
 														order.orderStatus
 															.order_status
 													}
 													<br />(
-													{new Date(
+													{order.delivery_date ? new Date(
 														order.delivery_date.slice(
 															0,
 															-1
 														)
-													).toDateString()}
+													).toDateString() : 'To be updated'}
 													)
 												</React.Fragment>
 											) : (
